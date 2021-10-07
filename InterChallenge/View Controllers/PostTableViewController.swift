@@ -10,8 +10,10 @@ class PostTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Postagens de \(userName)"
-        tableView.register(UINib(nibName: "TitleAndDescriptionTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "TitleAndDescriptionCell")
+        tableView.register(TitleAndDescriptionTableViewCell.self, forCellReuseIdentifier: "TitleAndDescriptionCell")
+        tableView.estimatedRowHeight = 85
+        tableView.rowHeight = UITableView.automaticDimension
+
         fillPosts(from: userId)
     }
     

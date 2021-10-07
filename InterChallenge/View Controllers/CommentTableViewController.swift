@@ -10,7 +10,7 @@ class CommentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Comentários de \(userName)"
-        tableView.register(UINib(nibName: "TitleAndDescriptionTableViewCell", bundle: nil),
+        tableView.register(TitleAndDescriptionTableViewCell.self,
                            forCellReuseIdentifier: "TitleAndDescriptionCell")
         fillComments(from: postId)
     }

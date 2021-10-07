@@ -55,6 +55,7 @@ class UserTableViewCell: UITableViewCell {
         let initialsView = UIView()
         initialsView.backgroundColor = .systemYellow
         initialsView.translatesAutoresizingMaskIntoConstraints = false
+        
         let separatorView = UIView()
         separatorView.backgroundColor = .lightGray
         separatorView.translatesAutoresizingMaskIntoConstraints = false
