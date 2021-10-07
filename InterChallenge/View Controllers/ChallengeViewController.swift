@@ -7,7 +7,10 @@ class ChallengeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
+        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "UserCell")
+        tableView.estimatedRowHeight = 233
+        tableView.rowHeight = UITableView.automaticDimension
+        
         fillUsers()
     }
     
