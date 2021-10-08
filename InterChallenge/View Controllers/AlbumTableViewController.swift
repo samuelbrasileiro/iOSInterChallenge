@@ -1,16 +1,33 @@
 import Alamofire
 import UIKit
 
-class AlbumTableViewController: UITableViewController {
+class AlbumTableViewController: UIViewController {
 
     var userId = Int()
     var userName = String()
     var albums = [Album]()
 
+    let tableView = UITableView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
         navigationItem.title = "Álbuns de \(userName)"
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: "AlbumCell")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         fillAlbums(from: userId)
     }
     
@@ -36,13 +53,15 @@ class AlbumTableViewController: UITableViewController {
             }
         }
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+}
+extension  AlbumTableViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumTableViewCell else {
             return UITableViewCell()
         }
@@ -53,7 +72,7 @@ class AlbumTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let albumId = albums[indexPath.row].id
         
         let vc = PhotoTableViewController()

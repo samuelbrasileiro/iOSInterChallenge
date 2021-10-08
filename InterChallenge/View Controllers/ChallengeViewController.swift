@@ -1,15 +1,33 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: UITableViewController {
+class ChallengeViewController: UIViewController {
     
     var users = [User]()
     
+    let tableView = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
+        self.title = "Desafio"
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "UserCell")
+        
         tableView.estimatedRowHeight = 233
         tableView.rowHeight = UITableView.automaticDimension
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         fillUsers()
     }
@@ -36,12 +54,14 @@ class ChallengeViewController: UITableViewController {
             }
         }
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+}
+
+extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserTableViewCell else {
             return UITableViewCell()
         }
@@ -58,33 +78,23 @@ class ChallengeViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? AlbumTableViewController {
-            if let info = sender as? (id: Int, name: String) {
-                destinationVC.userId = info.id
-                destinationVC.userName = info.name
-            }
-        }
-        
-        if let destinationVC = segue.destination as? PostTableViewController {
-            if let info = sender as? (id: Int, name: String) {
-                destinationVC.userId = info.id
-                destinationVC.userName = info.name
-            }
-        }
-    }
 }
 
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
-        let userIdAndName = (id: userId, name: name)
-        performSegue(withIdentifier: "challengeToAlbum", sender: userIdAndName)
+        
+        let vc = AlbumTableViewController()
+        vc.userId = userId
+        vc.userName = name
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     
     func didTapPosts(with userId: Int, by name: String) {
-        let userIdAndName = (id: userId, name: name)
-        performSegue(withIdentifier: "challengeToPost", sender: userIdAndName)
+        
+        let vc = PostTableViewController()
+        vc.userId = userId
+        vc.userName = name
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -1,19 +1,35 @@
 import Alamofire
 import UIKit
 
-class PostTableViewController: UITableViewController {
+class PostTableViewController: UIViewController {
     
     var userId = Int()
     var userName = String()
     var posts = [Post]()
-
+    
+    let tableView = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         navigationItem.title = "Postagens de \(userName)"
         tableView.register(TitleAndDescriptionTableViewCell.self, forCellReuseIdentifier: "TitleAndDescriptionCell")
         tableView.estimatedRowHeight = 85
         tableView.rowHeight = UITableView.automaticDimension
-
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         fillPosts(from: userId)
     }
     
@@ -39,37 +55,34 @@ class PostTableViewController: UITableViewController {
             }
         }
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension  PostTableViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleAndDescriptionCell", for: indexPath) as? TitleAndDescriptionTableViewCell else {
             return UITableViewCell()
         }
-
+        
         let post = posts[indexPath.row]
         cell.titleLabel.text = post.title
         cell.descriptionLabel.text = post.body
-
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let postId = posts[indexPath.row].id
-        performSegue(withIdentifier: "postToComment", sender: postId)
+        
+        let vc = CommentTableViewController()
+        vc.userName = self.userName
+        vc.postId = postId
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinatoinVC = segue.destination as? CommentTableViewController {
-            if let postId = sender as? Int {
-                destinatoinVC.userName = userName
-                destinatoinVC.postId = postId
-            }
-        }
-    }
+    
 }

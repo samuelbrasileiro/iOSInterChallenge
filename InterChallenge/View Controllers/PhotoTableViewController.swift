@@ -17,9 +17,7 @@ class PhotoTableViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
-        
-        tableView.estimatedRowHeight = 166.5
-        tableView.rowHeight = UITableView.automaticDimension
+
         
         tableView.delegate = self
         tableView.dataSource = self

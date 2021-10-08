@@ -1,17 +1,34 @@
 import Alamofire
 import UIKit
 
-class CommentTableViewController: UITableViewController {
+class CommentTableViewController: UIViewController {
     
     var postId = Int()
     var userName = String()
     var comments = [Comment]()
-
+    
+    let tableView = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
         navigationItem.title = "Comentários de \(userName)"
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TitleAndDescriptionTableViewCell.self,
                            forCellReuseIdentifier: "TitleAndDescriptionCell")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         fillComments(from: postId)
     }
     
@@ -36,22 +53,24 @@ class CommentTableViewController: UITableViewController {
                 print("Error during JSON serialization: \(error.localizedDescription)")
             }
         }
-   }
-
-   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
-   }
+    }
+}
+extension  CommentTableViewController: UITableViewDelegate, UITableViewDataSource{
     
-   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleAndDescriptionCell", for: indexPath) as? TitleAndDescriptionTableViewCell else {
             return UITableViewCell()
         }
-
+        
         let comment = comments[indexPath.row]
         cell.selectionStyle = .none
         cell.titleLabel.text = comment.name
         cell.descriptionLabel.text = comment.body
-
+        
         return cell
     }
 }
