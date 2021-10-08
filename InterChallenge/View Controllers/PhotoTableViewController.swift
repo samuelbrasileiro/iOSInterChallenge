@@ -1,18 +1,35 @@
 import Alamofire
 import UIKit
 
-class PhotoTableViewController: UITableViewController {
+class PhotoTableViewController: UIViewController {
 
     var albumId = Int()
     var userName = String()
     var photos = [Photo]()
-
+    
+    let tableView = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
         navigationItem.title = "Fotos de \(userName)"
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
+        
         tableView.estimatedRowHeight = 166.5
         tableView.rowHeight = UITableView.automaticDimension
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         fillPhotos(from: albumId)
     }
@@ -39,13 +56,15 @@ class PhotoTableViewController: UITableViewController {
             }
         }
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photos.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? PhotoTableViewCell else {
             return UITableViewCell()
         }
@@ -65,7 +84,7 @@ class PhotoTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
         
         AF.download(photo.url).responseData { response in
@@ -83,8 +102,5 @@ class PhotoTableViewController: UITableViewController {
             }
         }
     }
-
-    // MARK: - Navigation
-
 
 }

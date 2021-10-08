@@ -64,42 +64,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Álbuns" id="qvH-ay-hM2"/>
-                    <connections>
-                        <segue destination="poV-Ns-vh6" kind="show" identifier="albumToPhoto" id="ahL-NI-rj0"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09T-fO-8ub" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1099" y="-10"/>
-        </scene>
-        <!--Fotos-->
-        <scene sceneID="gAI-pJ-wVB">
-            <objects>
-                <tableViewController id="poV-Ns-vh6" customClass="PhotoTableViewController" customModule="InterChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="u9G-5g-Qpb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" id="hwl-0N-aJ5" customClass="PhotoTableViewCell" customModule="InterChallenge" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwl-0N-aJ5" id="VPM-gR-8T4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="poV-Ns-vh6" id="D6E-Uc-fmj"/>
-                            <outlet property="delegate" destination="poV-Ns-vh6" id="Sfe-dg-3xQ"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Fotos" id="7R0-U4-l9B"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j5w-AP-yZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1857" y="-10"/>
         </scene>
         <!--Posts-->
         <scene sceneID="nXa-b2-lSg">
