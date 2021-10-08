@@ -11,6 +11,9 @@ class PhotoTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = "Fotos de \(userName)"
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
+        tableView.estimatedRowHeight = 166.5
+        tableView.rowHeight = UITableView.automaticDimension
+        
         fillPhotos(from: albumId)
     }
     
@@ -64,11 +67,17 @@ class PhotoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
+        
         AF.download(photo.url).responseData { response in
             switch response.result {
             case .success(let data):
-                self.performSegue(withIdentifier: "photoToDetail",
-                                  sender: (photo: UIImage(data: data), name: photo.title))
+                let vc = DetailsViewController()
+                vc.name = photo.title
+                if let photo = UIImage(data: data){
+                    vc.photo = photo
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             default:
                 break
             }
@@ -77,12 +86,5 @@ class PhotoTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinatinVC = segue.destination as? DetailsViewController {
-            if let info = sender as? (photo: UIImage, name: String) {
-                destinatinVC.photo = info.photo
-                destinatinVC.name = info.name
-            }
-        }
-    }
+
 }
