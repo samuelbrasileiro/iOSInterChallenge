@@ -14,7 +14,9 @@ class AlbumTableViewCell: UITableViewCell {
         albumNameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
         albumNameLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16).isActive = true
     }
-    
+    func configure(album: Album){
+        self.albumNameLabel.text = album.title
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

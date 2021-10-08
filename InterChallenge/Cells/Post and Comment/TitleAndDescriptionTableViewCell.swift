@@ -19,6 +19,12 @@ class TitleAndDescriptionTableViewCell: UITableViewCell {
         descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
     }
     
+    func configure(title: String, description: String, selectionStyle: UITableViewCell.SelectionStyle = .default){
+        self.selectionStyle = selectionStyle
+        self.titleLabel.text = title
+        self.descriptionLabel.text = description
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

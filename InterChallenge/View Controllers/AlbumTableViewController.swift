@@ -42,7 +42,8 @@ extension  AlbumTableViewController: UITableViewDelegate, UITableViewDataSource{
         }
 
         let album = self.viewModel.items[indexPath.row]
-        cell.albumNameLabel.text = album.title
+        
+        cell.configure(album: album)
 
         return cell
     }

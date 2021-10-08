@@ -42,16 +42,9 @@ extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
         }
 
         let photo = self.viewModel.items[indexPath.row]
-        cell.titleLabel.text = photo.title
+        
+        cell.configure(photo: photo)
 
-        AF.download(photo.thumbnailUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                cell.photoImageView.image = UIImage(data: data)
-            default:
-                break
-            }
-        }
         
         return cell
     }

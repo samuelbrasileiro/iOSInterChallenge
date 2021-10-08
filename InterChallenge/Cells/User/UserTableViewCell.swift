@@ -97,6 +97,16 @@ class UserTableViewCell: UITableViewCell {
         
     }
     
+    func configure(user: User){
+        id = user.id
+        initialsLabel.text = String(user.name.prefix(2))
+        nameLabel.text = user.name
+        userNameLabel.text = user.username
+        emailLabel.text = user.email
+        phoneLabel.text = user.phone
+        
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

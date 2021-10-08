@@ -1,5 +1,5 @@
 import UIKit
-
+import Alamofire
 class PhotoTableViewCell: UITableViewCell {
 
     let titleLabel = UILabel.with(name: "title")
@@ -25,6 +25,18 @@ class PhotoTableViewCell: UITableViewCell {
         titleLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16).isActive = true
         
+    }
+    
+    func configure(photo: Photo){
+        self.titleLabel.text = photo.title
+        AF.download(photo.thumbnailUrl).responseData { response in
+            switch response.result {
+            case .success(let data):
+                self.photoImageView.image = UIImage(data: data)
+            default:
+                break
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

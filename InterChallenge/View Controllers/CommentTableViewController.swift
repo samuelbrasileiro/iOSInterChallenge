@@ -42,9 +42,7 @@ extension  CommentTableViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         let comment = self.viewModel.items[indexPath.row]
-        cell.selectionStyle = .none
-        cell.titleLabel.text = comment.name
-        cell.descriptionLabel.text = comment.body
+        cell.configure(title: comment.name, description: comment.body, selectionStyle: .none)
         
         return cell
     }

@@ -40,12 +40,8 @@ extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
         }
         let user = viewModel.items[indexPath.row]
         cell.selectionStyle = .none
-        cell.id = user.id
-        cell.initialsLabel.text = String(user.name.prefix(2))
-        cell.nameLabel.text = user.name
-        cell.userNameLabel.text = user.username
-        cell.emailLabel.text = user.email
-        cell.phoneLabel.text = user.phone
+        cell.configure(user: user)
+        
         cell.delegate = self
         cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? .systemBackground : .systemGray6
         return cell

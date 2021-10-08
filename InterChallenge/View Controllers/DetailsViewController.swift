@@ -23,6 +23,10 @@ class DetailsViewController: UIViewController {
         
         detailImageView.image =  photo
         nameLabel.text = name
+        
+        configureConstraints()
+    }
+    func configureConstraints(){
         detailImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         
         detailImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true

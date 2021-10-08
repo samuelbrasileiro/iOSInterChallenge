@@ -43,8 +43,7 @@ extension  PostTableViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         let post = viewModel.items[indexPath.row]
-        cell.titleLabel.text = post.title
-        cell.descriptionLabel.text = post.body
+        cell.configure(title: post.title, description: post.body)
         
         return cell
     }

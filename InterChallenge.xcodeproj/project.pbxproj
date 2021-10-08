@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */; };
 		7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* Label+withName.swift */; };
-		7EC84C322710C9A30057EB7B /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* ChallengeViewModel.swift */; };
-		7EC84C392710CA1D0057EB7B /* fillDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* fillDataDelegate.swift */; };
+		7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* TableViewModel.swift */; };
+		7EC84C392710CA1D0057EB7B /* TableViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* TableViewModelDelegate.swift */; };
+		7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C3F2710E5120057EB7B /* Coordinator.swift */; };
+		7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C452710E5360057EB7B /* DetailsViewModel.swift */; };
 		BA0CF8B126321D30007BDFC8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0CF89A26321BAE007BDFC8 /* Alamofire.framework */; };
 		BA0CF8B226321D30007BDFC8 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA0CF89A26321BAE007BDFC8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0CF8B72632F566007BDFC8 /* UserTableViewCell.swift */; };
@@ -119,8 +121,10 @@
 /* Begin PBXFileReference section */
 		35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsesAutoLayout.swift; sourceTree = "<group>"; };
 		7EAC21B427106D1B00CBDE2A /* Label+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+withName.swift"; sourceTree = "<group>"; };
-		7EC84C312710C9A30057EB7B /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
-		7EC84C382710CA1D0057EB7B /* fillDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fillDataDelegate.swift; sourceTree = "<group>"; };
+		7EC84C312710C9A30057EB7B /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		7EC84C382710CA1D0057EB7B /* TableViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModelDelegate.swift; sourceTree = "<group>"; };
+		7EC84C3F2710E5120057EB7B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		7EC84C452710E5360057EB7B /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		BA0CF88F26321BAE007BDFC8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		BA0CF8B72632F566007BDFC8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		BA0CF8C02632F7E3007BDFC8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -180,10 +184,19 @@
 		7EC84C352710C9AA0057EB7B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7EC84C312710C9A30057EB7B /* ChallengeViewModel.swift */,
-				7EC84C382710CA1D0057EB7B /* fillDataDelegate.swift */,
+				7EC84C312710C9A30057EB7B /* TableViewModel.swift */,
+				7EC84C382710CA1D0057EB7B /* TableViewModelDelegate.swift */,
+				7EC84C452710E5360057EB7B /* DetailsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7EC84C3E2710E4F30057EB7B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				7EC84C3F2710E5120057EB7B /* Coordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		BA0CF86C26321AE6007BDFC8 /* Frameworks */ = {
@@ -300,6 +313,7 @@
 		BA93F7EA2632035800CE8AFF /* InterChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				7EC84C3E2710E4F30057EB7B /* Coordinators */,
 				7EC84C352710C9AA0057EB7B /* ViewModels */,
 				BA0CF8C626334817007BDFC8 /* View Controllers */,
 				BA0CF8BF2632F7CD007BDFC8 /* Models */,
@@ -527,9 +541,11 @@
 				BA0CF8C12632F7E3007BDFC8 /* User.swift in Sources */,
 				BA0CF8EB26336B40007BDFC8 /* AlbumTableViewController.swift in Sources */,
 				BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */,
-				7EC84C322710C9A30057EB7B /* ChallengeViewModel.swift in Sources */,
+				7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */,
+				7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */,
 				BA0CF8D626334FF0007BDFC8 /* CommentTableViewController.swift in Sources */,
 				BA0CF8E426336A9A007BDFC8 /* AlbumTableViewCell.swift in Sources */,
+				7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */,
 				BA0CF8FA26336FEB007BDFC8 /* PhotoTableViewController.swift in Sources */,
 				BA0CF9022633764E007BDFC8 /* DetailsViewController.swift in Sources */,
 				35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */,
@@ -537,7 +553,7 @@
 				BA93F7EC2632035800CE8AFF /* AppDelegate.swift in Sources */,
 				BA0CF8DE263358E5007BDFC8 /* Comment.swift in Sources */,
 				BA93F7EE2632035800CE8AFF /* SceneDelegate.swift in Sources */,
-				7EC84C392710CA1D0057EB7B /* fillDataDelegate.swift in Sources */,
+				7EC84C392710CA1D0057EB7B /* TableViewModelDelegate.swift in Sources */,
 				BA0CF8DA26335759007BDFC8 /* Post.swift in Sources */,
 				7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */,
 				BA0CF8D226334FDB007BDFC8 /* PostTableViewController.swift in Sources */,
