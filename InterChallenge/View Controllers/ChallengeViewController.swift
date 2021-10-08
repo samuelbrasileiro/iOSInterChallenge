@@ -1,11 +1,13 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: UIViewController {
+class ChallengeViewController: UIViewController, TableViewModelDelegate {
     
-    var users = [User]()
+    typealias T = User
     
-    let tableView = UITableView()
+    var viewModel = FillViewModel<User>()
+    
+    var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,59 +15,30 @@ class ChallengeViewController: UIViewController {
         
         self.title = "Desafio"
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "UserCell")
         
-        tableView.estimatedRowHeight = 233
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        tableView.delegate = self
         tableView.dataSource = self
+        tableView.delegate = self
         
-        self.view.addSubview(tableView)
+        self.configureTableView()
         
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        self.fillData(url: "https://jsonplaceholder.typicode.com/users")
         
-        fillUsers()
     }
     
-    private func fillUsers() {
-        AF.request("https://jsonplaceholder.typicode.com/users").validate().responseJSON { response in
-            guard response.error == nil else {
-                let alert = UIAlertController(title: "Erro", message: "Algo errado aconteceu. Tente novamente mais tarde.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                    alert.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-                return
-            }
-            
-            do {
-                if let data = response.data {
-                    let models = try JSONDecoder().decode([User].self, from: data)
-                    self.users = models
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("Error during JSON serialization: \(error.localizedDescription)")
-            }
-        }
-    }
+    
 }
 
 extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return viewModel.items.count
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserTableViewCell else {
             return UITableViewCell()
         }
-        let user = users[indexPath.row]
+        let user = viewModel.items[indexPath.row]
         cell.selectionStyle = .none
         cell.id = user.id
         cell.initialsLabel.text = String(user.name.prefix(2))
@@ -74,7 +47,7 @@ extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
         cell.emailLabel.text = user.email
         cell.phoneLabel.text = user.phone
         cell.delegate = self
-        cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? .white : UIColor(white: 0.667, alpha: 0.2)
+        cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? .systemBackground : .systemGray6
         return cell
     }
     

@@ -1,64 +1,38 @@
 import Alamofire
 import UIKit
 
-class PhotoTableViewController: UIViewController {
+class PhotoTableViewController: UIViewController, TableViewModelDelegate {
+    
+    typealias T = Photo
+    
+    var viewModel = FillViewModel<Photo>()
+    
+    var tableView = UITableView()
 
     var albumId = Int()
     var userName = String()
-    var photos = [Photo]()
-    
-    let tableView = UITableView()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
         navigationItem.title = "Fotos de \(userName)"
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
-
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.view.addSubview(tableView)
-        
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
-        fillPhotos(from: albumId)
+        self.configureTableView()
+                
+        self.fillData(url: "https://jsonplaceholder.typicode.com/photos?albumId=\(albumId)")
     }
     
-    private func fillPhotos(from albumId: Int) {
-        AF.request("https://jsonplaceholder.typicode.com/photos?albumId=\(albumId)").validate().responseJSON { response in
-            guard response.error == nil else {
-                let alert = UIAlertController(title: "Erro", message: "Algo errado aconteceu. Tente novamente mais tarde.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                    alert.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-                return
-            }
-            
-            do {
-                if let data = response.data {
-                    let models = try JSONDecoder().decode([Photo].self, from: data)
-                    self.photos = models
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("Error during JSON serialization: \(error.localizedDescription)")
-            }
-        }
-    }
 }
 
 extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return self.viewModel.items.count
     }
 
     
@@ -67,7 +41,7 @@ extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
 
-        let photo = photos[indexPath.row]
+        let photo = self.viewModel.items[indexPath.row]
         cell.titleLabel.text = photo.title
 
         AF.download(photo.thumbnailUrl).responseData { response in
@@ -83,7 +57,7 @@ extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photo = photos[indexPath.row]
+        let photo = self.viewModel.items[indexPath.row]
         
         AF.download(photo.url).responseData { response in
             switch response.result {
