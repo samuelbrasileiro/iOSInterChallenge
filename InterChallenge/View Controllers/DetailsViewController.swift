@@ -1,6 +1,8 @@
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, DetailsViewModelDelegate {
+    
+    var viewModel = DetailsViewModel()
     
     let detailImageView: UIImageView = {
         let imageView = UIImageView()
@@ -9,23 +11,24 @@ class DetailsViewController: UIViewController {
         return imageView
     }()
     
-    let nameLabel  =  UILabel.with(name: "name")
+    let nameLabel = UILabel.with(name: "name")
     
-    var photo = UIImage()
-    var name = String()
-    
-    override func loadView() {
-        self.view = UIView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         
         self.view.addSubview(detailImageView)
         self.view.addSubview(nameLabel)
         
-        detailImageView.image =  photo
-        nameLabel.text = name
         
         configureConstraints()
     }
+    
+    func configure(photo: Photo){
+        self.viewModel.delegate = self
+        self.viewModel.configure(photo: photo)
+    }
+    
     func configureConstraints(){
         detailImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         
@@ -36,7 +39,14 @@ class DetailsViewController: UIViewController {
         nameLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true
         nameLabel.topAnchor.constraint(equalTo: self.detailImageView.bottomAnchor, constant: 16).isActive = true
-        
+    }
+    
+    func reloadName(_ name: String) {
+        self.nameLabel.text = name
+    }
+    
+    func reloadImage(_ image: UIImage) {
+        self.detailImageView.image = image
     }
     
 }

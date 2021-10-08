@@ -45,27 +45,16 @@ extension  PhotoTableViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.configure(photo: photo)
 
-        
         return cell
     }
     
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photo = self.viewModel.items[indexPath.row]
-        
-        AF.download(photo.url).responseData { response in
-            switch response.result {
-            case .success(let data):
-                let vc = DetailsViewController()
-                vc.name = photo.title
-                if let photo = UIImage(data: data){
-                    vc.photo = photo
-                }
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            default:
-                break
-            }
-        }
-    }
+    let photo = self.viewModel.items[indexPath.row]
+    let vc = DetailsViewController()
+    vc.configure(photo: photo)
+    
+    self.navigationController?.pushViewController(vc, animated: true)
+
+   }
 
 }
