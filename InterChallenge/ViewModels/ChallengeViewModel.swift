@@ -16,7 +16,7 @@ protocol TableViewModelDelegate{
     associatedtype T where T: Codable
     
     var tableView: UITableView {get set}
-    var viewModel: FillViewModel<T> {get set}
+    var viewModel: TableViewModel<T> {get set}
     
     func fillData(url: String)
     func configureTableView()
@@ -57,7 +57,7 @@ extension TableViewModelDelegate where Self: UIViewController, Self: UITableView
     }
 }
 
-class FillViewModel<T>
+class TableViewModel<T>
 where T: Codable{
     var items: [T] = []
     

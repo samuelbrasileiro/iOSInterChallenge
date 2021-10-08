@@ -5,7 +5,7 @@ class CommentTableViewController: UIViewController, TableViewModelDelegate {
     
     typealias T = Comment
     
-    var viewModel = FillViewModel<Comment>()
+    var viewModel = TableViewModel<Comment>()
     
     var tableView = UITableView()
     

@@ -5,7 +5,7 @@ class PhotoTableViewController: UIViewController, TableViewModelDelegate {
     
     typealias T = Photo
     
-    var viewModel = FillViewModel<Photo>()
+    var viewModel = TableViewModel<Photo>()
     
     var tableView = UITableView()
 

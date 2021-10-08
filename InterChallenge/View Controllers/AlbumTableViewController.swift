@@ -5,7 +5,7 @@ class AlbumTableViewController: UIViewController, TableViewModelDelegate {
     
     typealias T = Album
     
-    var viewModel = FillViewModel<Album>()
+    var viewModel = TableViewModel<Album>()
     
     var tableView = UITableView()
 

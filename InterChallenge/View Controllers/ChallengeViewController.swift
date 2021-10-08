@@ -5,7 +5,7 @@ class ChallengeViewController: UIViewController, TableViewModelDelegate {
     
     typealias T = User
     
-    var viewModel = FillViewModel<User>()
+    var viewModel = TableViewModel<User>()
     
     var tableView = UITableView()
     

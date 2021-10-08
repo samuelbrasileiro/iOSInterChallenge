@@ -10,7 +10,7 @@ class PostTableViewController: UIViewController, TableViewModelDelegate {
     
     var tableView = UITableView()
     
-    var viewModel = FillViewModel<Post>()
+    var viewModel = TableViewModel<Post>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
