@@ -1,20 +1,8 @@
 import UIKit
 
 class TitleAndDescriptionTableViewCell: UITableViewCell {
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "title"
-        label.numberOfLines = 0
-        return label
-    }()
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "description"
-        label.numberOfLines = 0
-        return label
-    }()
+    let titleLabel = UILabel.with(name: "title")
+    let descriptionLabel = UILabel.with(name: "description")
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

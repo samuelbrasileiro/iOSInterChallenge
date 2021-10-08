@@ -10,7 +10,7 @@ class AlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Álbuns de \(userName)"
-        tableView.register(UINib(nibName: "AlbumTableViewCell", bundle: nil), forCellReuseIdentifier: "AlbumCell")
+        tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: "AlbumCell")
         fillAlbums(from: userId)
     }
     

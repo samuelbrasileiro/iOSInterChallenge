@@ -7,44 +7,15 @@ protocol UserTableViewCellDelegate: AnyObject {
 
 class UserTableViewCell: UITableViewCell {
     
-    let initialsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "initials"
-        return label
-    }()
+    var initialsLabel = UILabel.with(name: "initials")
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "name"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    var nameLabel = UILabel.with(name: "name")
     
-    let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "username"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    var userNameLabel = UILabel.with(name: "username")
     
-    let emailLabel: UILabel = {
-        let label = UILabel()
-        label.text = "email"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    let emailLabel = UILabel.with(name: "email")
     
-    let phoneLabel: UILabel = {
-        let label = UILabel()
-        label.text = "phone"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    let phoneLabel = UILabel.with(name: "phone")
     
     var id: Int = 0
     var delegate: UserTableViewCellDelegate?
