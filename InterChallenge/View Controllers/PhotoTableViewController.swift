@@ -12,10 +12,9 @@ class PhotoTableViewController: ItemsTableViewController<PhotoTableViewCell, Pho
     }
 
     override func selectionFunction(item: Photo){
-        let vc = DetailsViewController()
-        vc.configure(photo: item)
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.showDetails(photo: item)
+    
     }
     
 }

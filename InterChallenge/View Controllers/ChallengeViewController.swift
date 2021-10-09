@@ -21,16 +21,12 @@ class ChallengeViewController: ItemsTableViewController<UserTableViewCell,User> 
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
         
-        let vc = AlbumTableViewController(url: "https://jsonplaceholder.typicode.com/albums?userId=\(userId)", cellIdentifier: "AlbumCell")
-        vc.userName = name
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.showAlbums(id: userId, name: name)
         
     }
     
     func didTapPosts(with userId: Int, by name: String) {
         
-        let vc = PostTableViewController(url: "https://jsonplaceholder.typicode.com/posts?userId=\(userId)", cellIdentifier: "PostCell")
-        vc.userName = name
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.showPosts(id: userId, name: name)
     }
 }

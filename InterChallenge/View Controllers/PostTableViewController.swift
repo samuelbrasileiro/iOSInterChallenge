@@ -14,10 +14,7 @@ class PostTableViewController: ItemsTableViewController<TitleAndDescriptionTable
     
     override func selectionFunction(item: Post){
         
-        let vc = CommentTableViewController(url: "https://jsonplaceholder.typicode.com/comments?postId=\(item.id)", cellIdentifier: "CommentCell")
-        vc.userName = self.userName
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.showComments(id: item.id, name: userName)
         
     }
     

@@ -13,9 +13,9 @@ class AlbumTableViewController: ItemsTableViewController<AlbumTableViewCell, Alb
     }
     
     override func selectionFunction(item: Album){
-        let vc = PhotoTableViewController(url: "https://jsonplaceholder.typicode.com/photos?albumId=\(item.id)", cellIdentifier: "PhotoCell")
-        vc.userName = self.userName
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        coordinator?.showPhotos(id: item.id, name: userName)
+        
     }
     
     

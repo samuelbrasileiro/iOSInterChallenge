@@ -4,6 +4,8 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate {
     
     var viewModel = DetailsViewModel()
     
+    weak var coodinator: MainCoordinator?
+    
     let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
