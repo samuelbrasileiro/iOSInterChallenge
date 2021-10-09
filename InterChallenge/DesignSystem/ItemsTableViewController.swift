@@ -6,41 +6,30 @@
 //
 
 import UIKit
-protocol ConfigurableCell{
-    func configure<T>(item: T)
-}
-
-protocol CellConfigurationDelegate{
-    associatedtype CellType
-    func cellConfigurationCompletion(cell: CellType, at cellRow: Int)
-}
 
 class ItemsTableViewController<CellType, ItemType>: UITableViewController, TableViewModelDelegate, CellConfigurationDelegate
 where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable{
     
     typealias T = ItemType
     var viewModel = TableViewModel<ItemType>()
-        
-    var url: String
-    
-    var cellIdentifier: String
     
     weak var coordinator: MainCoordinator?
     
-    init(url: String, cellIdentifier: String){
-        self.url = url
-        self.cellIdentifier = cellIdentifier
-        
+    init(id: Int? = nil){
+                
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.setURL(id: id)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        tableView.register(CellType.self, forCellReuseIdentifier: cellIdentifier)
-                
-        self.fillData(url: url)
+        tableView.register(CellType.self, forCellReuseIdentifier: viewModel.cellIdentifier)
+        
+        self.fillData()
     }
     
     required init?(coder: NSCoder) {
@@ -51,9 +40,8 @@ where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable{
         return self.viewModel.items.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CellType else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifier, for: indexPath) as? CellType else {
             return UITableViewCell()
         }
         

@@ -23,13 +23,18 @@ class MainCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        let vc = ChallengeViewController(url: "https://jsonplaceholder.typicode.com/users", cellIdentifier: "ChallengeCell")
+        let vc = ChallengeViewController()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
+//    func showItemsTableView<T: ItemsTableViewController>(id: Int, name: String){
+//
+//    }
+//
+    
     func showPosts(id: Int, name: String) {
-        let vc = PostTableViewController(url: "https://jsonplaceholder.typicode.com/posts?userId=\(id)", cellIdentifier: "PostCell")
+        let vc = PostTableViewController(id: id)
         vc.userName = name
         
         vc.coordinator = self
@@ -37,7 +42,7 @@ class MainCoordinator: Coordinator {
     }
     
     func showComments(id: Int, name: String) {
-        let vc = CommentTableViewController(url: "https://jsonplaceholder.typicode.com/comments?postId=\(id)", cellIdentifier: "CommentCell")
+        let vc = CommentTableViewController(id: id)
         vc.userName = name
         
         vc.coordinator = self
@@ -46,7 +51,7 @@ class MainCoordinator: Coordinator {
     
     func showAlbums(id: Int, name: String) {
         
-        let vc = AlbumTableViewController(url: "https://jsonplaceholder.typicode.com/albums?userId=\(id)", cellIdentifier: "AlbumCell")
+        let vc = AlbumTableViewController(id: id)
         vc.userName = name
         
         vc.coordinator = self
@@ -55,7 +60,7 @@ class MainCoordinator: Coordinator {
     }
     
     func showPhotos(id: Int, name: String) {
-        let vc = PhotoTableViewController(url: "https://jsonplaceholder.typicode.com/photos?albumId=\(id)", cellIdentifier: "PhotoCell")
+        let vc = PhotoTableViewController(id: id)
         vc.userName = name
         
         vc.coordinator = self

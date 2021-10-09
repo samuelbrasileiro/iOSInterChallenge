@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */; };
+		7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */; };
 		7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* Label+withName.swift */; };
 		7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* TableViewModel.swift */; };
 		7EC84C392710CA1D0057EB7B /* TableViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* TableViewModelDelegate.swift */; };
@@ -122,6 +123,7 @@
 
 /* Begin PBXFileReference section */
 		35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsesAutoLayout.swift; sourceTree = "<group>"; };
+		7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		7EAC21B427106D1B00CBDE2A /* Label+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+withName.swift"; sourceTree = "<group>"; };
 		7EC84C312710C9A30057EB7B /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		7EC84C382710CA1D0057EB7B /* TableViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				BA0CF8EA26336B40007BDFC8 /* AlbumTableViewController.swift */,
 				BA0CF8F926336FEB007BDFC8 /* PhotoTableViewController.swift */,
 				BA0CF9012633764E007BDFC8 /* DetailsViewController.swift */,
+				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				7EC84C392710CA1D0057EB7B /* TableViewModelDelegate.swift in Sources */,
 				BA0CF8DA26335759007BDFC8 /* Post.swift in Sources */,
 				7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */,
+				7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */,
 				BA0CF8D226334FDB007BDFC8 /* PostTableViewController.swift in Sources */,
 				BA0CF8CD26334BC3007BDFC8 /* TitleAndDescriptionTableViewCell.swift in Sources */,
 			);

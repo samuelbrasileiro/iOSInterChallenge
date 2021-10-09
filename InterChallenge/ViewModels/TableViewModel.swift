@@ -12,10 +12,14 @@ class TableViewModel<T>
 where T: Codable{
     var items: [T] = []
     
+    var url: String = ""
+    
+    var cellIdentifier: String = "MainCell"
+    
     init(){
     }
     
-    func fillItems(url: String, completion: @escaping (Result<HTTPURLResponse, Error>) -> Void) {
+    func fillItems(completion: @escaping (Result<HTTPURLResponse, Error>) -> Void) {
         
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
@@ -37,4 +41,33 @@ where T: Codable{
             }
         }
     }
+    
+    func setURL(id: Int? = nil) {
+        var url = ""
+        if let id = id {
+            
+            switch T.self {
+            case is Post.Type:
+                url = "https://jsonplaceholder.typicode.com/posts?userId=\(id)"
+            case is Comment.Type:
+                url = "https://jsonplaceholder.typicode.com/comments?postId=\(id)"
+            case is Album.Type:
+                url = "https://jsonplaceholder.typicode.com/albums?userId=\(id)"
+            case is Photo.Type:
+                url = "https://jsonplaceholder.typicode.com/photos?albumId=\(id)"
+            default:
+                url = ""
+            }
+        }
+        else {
+            switch T.self {
+            case is User.Type:
+                url = "https://jsonplaceholder.typicode.com/users"
+            default:
+                url = ""
+            }
+        }
+        self.url = url
+    }
+    
 }

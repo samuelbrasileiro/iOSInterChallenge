@@ -12,15 +12,15 @@ protocol TableViewModelDelegate{
     
     var viewModel: TableViewModel<T> {get set}
     
-    func fillData(url: String)
+    func fillData()
     
     func selectionFunction(item: T)
 }
 
 extension TableViewModelDelegate where Self: UITableViewController{
     
-    func fillData(url: String){
-        viewModel.fillItems(url: url){  [weak self] result in
+    func fillData() {
+        viewModel.fillItems{  [weak self] result in
             guard let self = self else { return }
             
             if case .success(_) = result {
