@@ -9,5 +9,5 @@ import Foundation
 
 protocol TitleAndDescription: Codable {
     var title: String {get}
-    var description:  String {get}
+    var description: String {get}
 }

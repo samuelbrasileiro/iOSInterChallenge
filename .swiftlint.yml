@@ -1,0 +1,6 @@
+included:
+
+excluded:
+  - Frameworks
+  - InterChallengeUITests
+  - InterChallengeTests

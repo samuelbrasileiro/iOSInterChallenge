@@ -1,12 +1,11 @@
 import Foundation
 
-struct Post:TitleAndDescription {
+struct Post: TitleAndDescription {
     var title: String
     var description: String
-    let id: Int
+    let uid: Int
     let userId: Int
-    
     enum CodingKeys: String, CodingKey {
-        case id, userId, title, description="body"
+        case uid = "id", userId, title, description="body"
     }
 }

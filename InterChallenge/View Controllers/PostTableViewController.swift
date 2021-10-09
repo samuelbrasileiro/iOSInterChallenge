@@ -1,21 +1,13 @@
 import Alamofire
 import UIKit
 
-class PostTableViewController: ItemsTableViewController<TitleAndDescriptionTableViewCell,Post> {
-
+class PostTableViewController: ItemsTableViewController<TitleAndDescriptionTableViewCell, Post> {
     var userName = String()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Postagens de \(userName)"
-        
     }
-    
-    override func selectionFunction(item: Post){
-        
-        coordinator?.showComments(id: item.id, name: userName)
-        
+    override func selectionFunction(item: Post) {
+        coordinator?.showComments(itemId: item.uid, name: userName)
     }
-    
 }

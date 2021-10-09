@@ -140,8 +140,8 @@ extension DataRequest {
     ///
     /// - Returns:      The `DataResponsePublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishResponse<Serializer: ResponseSerializer, T>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DataResponsePublisher<T>
-        where Serializer.SerializedObject == T {
+    public func publishResponse<Serializer: ResponseSerializer, ItemType>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DataResponsePublisher<ItemType>
+        where Serializer.SerializedObject == ItemType {
         DataResponsePublisher(self, queue: queue, serializer: serializer)
     }
 
@@ -213,12 +213,12 @@ extension DataRequest {
     ///
     /// - Returns:               The `DataResponsePublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishDecodable<T: Decodable>(type: T.Type = T.self,
+    public func publishDecodable<ItemType: Decodable>(type: ItemType.Type = ItemType.self,
                                                queue: DispatchQueue = .main,
-                                               preprocessor: DataPreprocessor = DecodableResponseSerializer<T>.defaultDataPreprocessor,
+                                               preprocessor: DataPreprocessor = DecodableResponseSerializer<ItemType>.defaultDataPreprocessor,
                                                decoder: DataDecoder = JSONDecoder(),
-                                               emptyResponseCodes: Set<Int> = DecodableResponseSerializer<T>.defaultEmptyResponseCodes,
-                                               emptyResponseMethods: Set<HTTPMethod> = DecodableResponseSerializer<T>.defaultEmptyRequestMethods) -> DataResponsePublisher<T> {
+                                               emptyResponseCodes: Set<Int> = DecodableResponseSerializer<ItemType>.defaultEmptyResponseCodes,
+                                               emptyResponseMethods: Set<HTTPMethod> = DecodableResponseSerializer<ItemType>.defaultEmptyRequestMethods) -> DataResponsePublisher<ItemType> {
         publishResponse(using: DecodableResponseSerializer(dataPreprocessor: preprocessor,
                                                            decoder: decoder,
                                                            emptyResponseCodes: emptyResponseCodes,
@@ -373,10 +373,10 @@ extension DataStreamRequest {
     ///                   `PassthroughPreprocessor()` by default.
     /// - Returns:        The `DataStreamPublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishDecodable<T: Decodable>(type: T.Type = T.self,
+    public func publishDecodable<ItemType: Decodable>(type: ItemType.Type = ItemType.self,
                                                queue: DispatchQueue = .main,
                                                decoder: DataDecoder = JSONDecoder(),
-                                               preprocessor: DataPreprocessor = PassthroughPreprocessor()) -> DataStreamPublisher<T> {
+                                               preprocessor: DataPreprocessor = PassthroughPreprocessor()) -> DataStreamPublisher<ItemType> {
         publishStream(using: DecodableStreamSerializer(decoder: decoder,
                                                        dataPreprocessor: preprocessor),
                       on: queue)
@@ -484,8 +484,8 @@ extension DownloadRequest {
     ///
     /// - Returns:      The `DownloadResponsePublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishResponse<Serializer: ResponseSerializer, T>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DownloadResponsePublisher<T>
-        where Serializer.SerializedObject == T {
+    public func publishResponse<Serializer: ResponseSerializer, ItemType>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DownloadResponsePublisher<ItemType>
+        where Serializer.SerializedObject == ItemType {
         DownloadResponsePublisher(self, queue: queue, serializer: serializer)
     }
 
@@ -498,8 +498,8 @@ extension DownloadRequest {
     ///
     /// - Returns:      The `DownloadResponsePublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishResponse<Serializer: DownloadResponseSerializerProtocol, T>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DownloadResponsePublisher<T>
-        where Serializer.SerializedObject == T {
+    public func publishResponse<Serializer: DownloadResponseSerializerProtocol, ItemType>(using serializer: Serializer, on queue: DispatchQueue = .main) -> DownloadResponsePublisher<ItemType>
+        where Serializer.SerializedObject == ItemType {
         DownloadResponsePublisher(self, queue: queue, serializer: serializer)
     }
 
@@ -583,12 +583,12 @@ extension DownloadRequest {
     ///
     /// - Returns:               The `DownloadResponsePublisher`.
     @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-    public func publishDecodable<T: Decodable>(type: T.Type = T.self,
+    public func publishDecodable<ItemType: Decodable>(type: ItemType.Type = ItemType.self,
                                                queue: DispatchQueue = .main,
-                                               preprocessor: DataPreprocessor = DecodableResponseSerializer<T>.defaultDataPreprocessor,
+                                               preprocessor: DataPreprocessor = DecodableResponseSerializer<ItemType>.defaultDataPreprocessor,
                                                decoder: DataDecoder = JSONDecoder(),
-                                               emptyResponseCodes: Set<Int> = DecodableResponseSerializer<T>.defaultEmptyResponseCodes,
-                                               emptyResponseMethods: Set<HTTPMethod> = DecodableResponseSerializer<T>.defaultEmptyRequestMethods) -> DownloadResponsePublisher<T> {
+                                               emptyResponseCodes: Set<Int> = DecodableResponseSerializer<ItemType>.defaultEmptyResponseCodes,
+                                               emptyResponseMethods: Set<HTTPMethod> = DecodableResponseSerializer<ItemType>.defaultEmptyRequestMethods) -> DownloadResponsePublisher<ItemType> {
         publishResponse(using: DecodableResponseSerializer(dataPreprocessor: preprocessor,
                                                            decoder: decoder,
                                                            emptyResponseCodes: emptyResponseCodes,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UILabel{
+extension UILabel {
     class func with(name: String, numberOfLines: Int = 0) -> UILabel {
         let label = UILabel()
         label.text = name

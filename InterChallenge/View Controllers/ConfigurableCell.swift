@@ -7,11 +7,13 @@
 
 import UIKit
 
-protocol ConfigurableCell{
-    func configure<T>(item: T)
+protocol ConfigurableCell: AnyObject {
+    func setData<T>(item: T)
+    func setConstraints()
+    func configure()
 }
 
-protocol CellConfigurationDelegate{
+protocol CellConfigurationDelegate: AnyObject {
     associatedtype CellType
     func cellConfigurationCompletion(cell: CellType, at cellRow: Int)
 }

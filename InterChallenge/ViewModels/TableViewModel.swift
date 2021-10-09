@@ -9,30 +9,23 @@ import SwiftUI
 import Alamofire
 
 class TableViewModel<T>
-where T: Codable{
+where T: Codable {
     var items: [T] = []
-    
     var url: String = ""
-    
     var cellIdentifier: String = "MainCell"
-    
-    init(){
+    init() {
     }
-    
-    func fillItems(completion: @escaping (Result<HTTPURLResponse, Error>) -> Void) {
-        
+    func fillItems(completion: @escaping (Result<HTTPURLResponse?, Error>) -> Void) {
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
-                
-                completion(.failure(response.error!.underlyingError!))//checar isso
+                completion(.failure(response.error!.underlyingError!)) // checar isso
                 return
             }
-            
             do {
                 if let data = response.data {
                     let models = try JSONDecoder().decode([T].self, from: data)
                     self.items = models
-                    //self.tableView.reloadData()
+                    // self.tableView.reloadData()
                     completion(.success(response.response!))
                 }
             } catch {
@@ -41,25 +34,22 @@ where T: Codable{
             }
         }
     }
-    
-    func setURL(id: Int? = nil) {
+    func setURL(itemId: Int? = nil) {
         var url = ""
-        if let id = id {
-            
+        if let itemId = itemId {
             switch T.self {
             case is Post.Type:
-                url = "https://jsonplaceholder.typicode.com/posts?userId=\(id)"
+                url = "https://jsonplaceholder.typicode.com/posts?userId=\(itemId)"
             case is Comment.Type:
-                url = "https://jsonplaceholder.typicode.com/comments?postId=\(id)"
+                url = "https://jsonplaceholder.typicode.com/comments?postId=\(itemId)"
             case is Album.Type:
-                url = "https://jsonplaceholder.typicode.com/albums?userId=\(id)"
+                url = "https://jsonplaceholder.typicode.com/albums?userId=\(itemId)"
             case is Photo.Type:
-                url = "https://jsonplaceholder.typicode.com/photos?albumId=\(id)"
+                url = "https://jsonplaceholder.typicode.com/photos?albumId=\(itemId)"
             default:
                 url = ""
             }
-        }
-        else {
+        } else {
             switch T.self {
             case is User.Type:
                 url = "https://jsonplaceholder.typicode.com/users"
@@ -69,5 +59,4 @@ where T: Codable{
         }
         self.url = url
     }
-    
 }

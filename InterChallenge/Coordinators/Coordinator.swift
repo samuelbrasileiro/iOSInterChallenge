@@ -16,63 +16,47 @@ protocol Coordinator {
 
 class MainCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
-    
     var navigationController: UINavigationController
-    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     func start() {
-        let vc = ChallengeViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        let viewController = ChallengeViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
     }
-    
 //    func showItemsTableView<T: ItemsTableViewController>(id: Int, name: String){
 //
 //    }
 //
-    
-    func showPosts(id: Int, name: String) {
-        let vc = PostTableViewController(id: id)
-        vc.userName = name
-        
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+    func showPosts(itemId: Int, name: String) {
+        let viewController = PostTableViewController(itemId: itemId)
+        viewController.userName = name
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
-    
-    func showComments(id: Int, name: String) {
-        let vc = CommentTableViewController(id: id)
-        vc.userName = name
-        
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+    func showComments(itemId: Int, name: String) {
+        let viewController = CommentTableViewController(itemId: itemId)
+        viewController.userName = name
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
-    
-    func showAlbums(id: Int, name: String) {
-        
-        let vc = AlbumTableViewController(id: id)
-        vc.userName = name
-        
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-        
+    func showAlbums(itemId: Int, name: String) {
+        let viewController = AlbumTableViewController(itemId: itemId)
+        viewController.userName = name
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
-    
-    func showPhotos(id: Int, name: String) {
-        let vc = PhotoTableViewController(id: id)
-        vc.userName = name
-        
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+    func showPhotos(itemId: Int, name: String) {
+        let viewController = PhotoTableViewController(itemId: itemId)
+        viewController.userName = name
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
-    
     func showDetails(photo: Photo) {
-        let vc = DetailsViewController()
-        vc.configure(photo: photo)
-        
-        vc.coodinator = self
-        navigationController.pushViewController(vc, animated: true)
+        let viewController = DetailsViewController()
+        viewController.configure(photo: photo)
+        viewController.coodinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
-    
 }
