@@ -10,7 +10,7 @@ class PhotoTableViewController: ItemsTableViewController<PhotoTableViewCell, Pho
         
         navigationItem.title = "Fotos de \(userName)"
     }
-    
+
     override func selectionFunction(item: Photo){
         let vc = DetailsViewController()
         vc.configure(photo: item)

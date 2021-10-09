@@ -13,6 +13,8 @@ protocol TableViewModelDelegate{
     var viewModel: TableViewModel<T> {get set}
     
     func fillData(url: String)
+    
+    func selectionFunction(item: T)
 }
 
 extension TableViewModelDelegate where Self: UITableViewController{
@@ -33,4 +35,5 @@ extension TableViewModelDelegate where Self: UITableViewController{
             }
         }
     }
+    
 }

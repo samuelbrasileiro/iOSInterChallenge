@@ -9,8 +9,9 @@ class ChallengeViewController: ItemsTableViewController<UserTableViewCell,User> 
         self.title = "Desafio"
         
     }
+    
     override func cellConfigurationCompletion(cell: UserTableViewCell, at cellRow: Int) {
-        cell.selectionStyle = .none
+        
         cell.delegate = self
         cell.contentView.backgroundColor = cellRow % 2 == 0 ? .systemBackground : .systemGray6
     }

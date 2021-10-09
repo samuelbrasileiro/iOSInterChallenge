@@ -13,3 +13,19 @@ protocol Coordinator {
 
     func start()
 }
+
+class MainCoordinator: Coordinator{
+    var childCoordinators: [Coordinator] = []
+    
+    var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    func start() {
+        let vc = ChallengeViewController(url: "https://jsonplaceholder.typicode.com/users", cellIdentifier: "ChallengeCell")
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    
+}

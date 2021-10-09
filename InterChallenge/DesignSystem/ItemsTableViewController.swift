@@ -10,25 +10,22 @@ protocol ConfigurableCell{
     func configure<T>(item: T)
 }
 
- 
-class ItemsTableViewController<CellType, ItemType>: UITableViewController, TableViewModelDelegate
+protocol CellConfigurationDelegate{
+    associatedtype CellType
+    func cellConfigurationCompletion(cell: CellType, at cellRow: Int)
+}
+
+class ItemsTableViewController<CellType, ItemType>: UITableViewController, TableViewModelDelegate, CellConfigurationDelegate
 where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable{
     
     typealias T = ItemType
-    
     var viewModel = TableViewModel<ItemType>()
         
     var url: String
     
     var cellIdentifier: String
     
-    func cellConfigurationCompletion(cell: CellType, at cellRow: Int){
-         
-    }
-    
-    func selectionFunction(item: ItemType){
-        
-    }
+    weak var coordinator: MainCoordinator?
     
     init(url: String, cellIdentifier: String){
         self.url = url
@@ -66,6 +63,14 @@ where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable{
         cellConfigurationCompletion(cell: cell, at: indexPath.row)
         
         return cell
+    }
+    
+    func cellConfigurationCompletion(cell: CellType, at cellRow: Int){
+        
+    }
+    
+    func selectionFunction(item:  ItemType){
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

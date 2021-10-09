@@ -4,6 +4,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
+    var coordinator: MainCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -12,7 +13,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            window.rootViewController = UINavigationController(rootViewController: ChallengeViewController(url: "https://jsonplaceholder.typicode.com/users", cellIdentifier: "UserCell"))
+            // create the main navigation controller to be used for our app
+                let navigationController = UINavigationController()
+
+                // send that into our coordinator so that it can display view controllers
+                coordinator = MainCoordinator(navigationController: navigationController)
+
+                // tell the coordinator to take over control
+                coordinator?.start()
+            
+            window.rootViewController = navigationController
             
             self.window = window
             window.makeKeyAndVisible()

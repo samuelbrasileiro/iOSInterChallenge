@@ -12,4 +12,8 @@ class CommentTableViewController: ItemsTableViewController<TitleAndDescriptionTa
         
         
     }
+    
+    override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell, at cellRow: Int) {
+        cell.selectionStyle = .none
+    }
 }
