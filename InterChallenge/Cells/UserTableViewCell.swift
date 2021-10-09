@@ -22,11 +22,29 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
         setConstraints()
     }
     func configure() {
+        setInitialsView()
+        setSeparator()
+        setButtons()
+        initialsView.addSubview(initialsLabel)
+        self.contentView.addSubview(initialsView)
+        self.contentView.addSubview(separatorView)
+        self.contentView.addSubview(nameLabel)
+        self.contentView.addSubview(userNameLabel)
+        self.contentView.addSubview(emailLabel)
+        self.contentView.addSubview(phoneLabel)
+        self.contentView.addSubview(stackView)
+    }
+    func setInitialsView() {
+        initialsView = UIView()
         initialsView.backgroundColor = .systemYellow
         initialsView.translatesAutoresizingMaskIntoConstraints = false
-        let separatorView = UIView()
+    }
+    func setSeparator() {
+        separatorView = UIView()
         separatorView.backgroundColor = .lightGray
         separatorView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    func setButtons() {
         let albumsButton = UIButton()
         albumsButton.setTitleColor(.systemYellow, for: .normal)
         albumsButton.setTitle("ÁLBUNS", for: .normal)
@@ -40,16 +58,6 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        initialsView.addSubview(initialsLabel)
-        self.contentView.addSubview(initialsView)
-        self.contentView.addSubview(separatorView)
-        self.contentView.addSubview(nameLabel)
-        self.contentView.addSubview(userNameLabel)
-        self.contentView.addSubview(emailLabel)
-        self.contentView.addSubview(phoneLabel)
-        stackView.addSubview(postsButton)
-        stackView.addSubview(albumsButton)
-        self.contentView.addSubview(stackView)
     }
         func setConstraints() {
         initialsView.widthAnchor.constraint(equalToConstant: 88).isActive = true

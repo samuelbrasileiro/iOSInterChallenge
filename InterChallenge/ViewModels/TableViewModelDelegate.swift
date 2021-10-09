@@ -18,16 +18,17 @@ extension TableViewGeneric where Self: UITableViewController {
     func fillData() {
         viewModel.fillItems {  [weak self] result in
             guard let self = self else { return }
-            if case .success(nil) = result {
-                self.tableView.reloadData()
-            } else {
-                let alert = UIAlertController(title: "Erro",
-                                              message: "Algo errado aconteceu. Tente novamente mais tarde.",
+            if case .failure(let error) = result {
+                print(error)
+                let alert = UIAlertController(title: "Error",
+                                              message: error.localizedDescription,
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
                     alert.dismiss(animated: true)
                 }))
                 self.present(alert, animated: true)
+            } else {
+                self.tableView.reloadData()
             }
         }
     }
