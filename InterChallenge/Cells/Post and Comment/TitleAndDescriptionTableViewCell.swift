@@ -1,6 +1,13 @@
 import UIKit
 
-class TitleAndDescriptionTableViewCell: UITableViewCell {
+class TitleAndDescriptionTableViewCell: UITableViewCell, ConfigurableCell {
+    func configure<T>(item: T) {
+        if let item = item as? TitleAndDescription{
+            self.titleLabel.text = item.title
+            self.descriptionLabel.text = item.description
+        }
+    }
+    
     let titleLabel = UILabel.with(name: "title")
     let descriptionLabel = UILabel.with(name: "description")
     
@@ -22,10 +29,9 @@ class TitleAndDescriptionTableViewCell: UITableViewCell {
         descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
     }
     
-    func configure(title: String, description: String, selectionStyle: UITableViewCell.SelectionStyle = .default){
-        self.selectionStyle = selectionStyle
-        self.titleLabel.text = title
-        self.descriptionLabel.text = description
+    func configure(title: String, description: String){
+        
+
     }
     
     required init?(coder: NSCoder) {

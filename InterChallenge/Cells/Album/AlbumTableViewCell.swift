@@ -1,6 +1,13 @@
 import UIKit
 
-class AlbumTableViewCell: UITableViewCell {
+class AlbumTableViewCell: UITableViewCell, ConfigurableCell {
+    
+    func configure<T>(item: T) {
+        if let item = item as? Album{
+            self.albumNameLabel.text = item.title
+        }
+    }
+    
     
     let albumNameLabel = UILabel.with(name: "album name")
     
@@ -13,9 +20,6 @@ class AlbumTableViewCell: UITableViewCell {
         albumNameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16).isActive = true
         albumNameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
         albumNameLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16).isActive = true
-    }
-    func configure(album: Album){
-        self.albumNameLabel.text = album.title
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

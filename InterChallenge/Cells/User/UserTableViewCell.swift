@@ -5,7 +5,7 @@ protocol UserTableViewCellDelegate: AnyObject {
     func didTapPosts(with userId: Int, by name: String)
 }
 
-class UserTableViewCell: UITableViewCell {
+class UserTableViewCell: UITableViewCell, ConfigurableCell {
     
     var initialsLabel = UILabel.with(name: "initials")
     
@@ -97,14 +97,15 @@ class UserTableViewCell: UITableViewCell {
         
     }
     
-    func configure(user: User){
-        id = user.id
-        initialsLabel.text = String(user.name.prefix(2))
-        nameLabel.text = user.name
-        userNameLabel.text = user.username
-        emailLabel.text = user.email
-        phoneLabel.text = user.phone
-        
+    func configure<T>(item: T) {
+        if let item = item as? User{
+            id = item.id
+            initialsLabel.text = String(item.name.prefix(2))
+            nameLabel.text = item.name
+            userNameLabel.text = item.username
+            emailLabel.text = item.email
+            phoneLabel.text = item.phone
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

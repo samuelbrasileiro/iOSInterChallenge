@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            window.rootViewController = UINavigationController(rootViewController: ChallengeViewController())
+            window.rootViewController = UINavigationController(rootViewController: ChallengeViewController(url: "https://jsonplaceholder.typicode.com/users", cellIdentifier: "UserCell"))
             
             self.window = window
             window.makeKeyAndVisible()

@@ -1,10 +1,11 @@
 import UIKit
 import Alamofire
-class PhotoTableViewCell: UITableViewCell {
 
+class PhotoTableViewCell: UITableViewCell, ConfigurableCell {
+    
     let titleLabel = UILabel.with(name: "title")
     let photoImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -14,6 +15,26 @@ class PhotoTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(photoImageView)
+        
+        setConstraints()
+    }
+    
+    
+    func configure<ItemType>(item: ItemType) {
+        if let item = item as? Photo{
+            self.titleLabel.text = item.title
+            AF.download(item.thumbnailUrl).responseData { response in
+                switch response.result {
+                case .success(let data):
+                    self.photoImageView.image = UIImage(data: data)
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    func setConstraints() {
         photoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         photoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
@@ -24,25 +45,12 @@ class PhotoTableViewCell: UITableViewCell {
         titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16).isActive = true
-        
-    }
-    
-    func configure(photo: Photo){
-        self.titleLabel.text = photo.title
-        AF.download(photo.thumbnailUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                self.photoImageView.image = UIImage(data: data)
-            default:
-                break
-            }
-        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

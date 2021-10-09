@@ -1,50 +1,18 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: UIViewController, TableViewModelDelegate {
-    
-    typealias T = User
-    
-    var viewModel = TableViewModel<User>()
-    
-    var tableView = UITableView()
+class ChallengeViewController: ItemsTableViewController<UserTableViewCell,User> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         
         self.title = "Desafio"
         
-        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "UserCell")
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        self.configureTableView()
-        
-        self.fillData(url: "https://jsonplaceholder.typicode.com/users")
-        
     }
-    
-    
-}
-
-extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
-    }
-    
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserTableViewCell else {
-            return UITableViewCell()
-        }
-        let user = viewModel.items[indexPath.row]
+    override func cellConfigurationCompletion(cell: UserTableViewCell, at cellRow: Int) {
         cell.selectionStyle = .none
-        cell.configure(user: user)
-        
         cell.delegate = self
-        cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? .systemBackground : .systemGray6
-        return cell
+        cell.contentView.backgroundColor = cellRow % 2 == 0 ? .systemBackground : .systemGray6
     }
     
 }
@@ -52,17 +20,15 @@ extension  ChallengeViewController: UITableViewDelegate, UITableViewDataSource{
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
         
-        let vc = AlbumTableViewController()
-        vc.userId = userId
+        let vc = AlbumTableViewController(url: "https://jsonplaceholder.typicode.com/albums?userId=\(userId)", cellIdentifier: "AlbumCell")
         vc.userName = name
         self.navigationController?.pushViewController(vc, animated: true)
-
+        
     }
     
     func didTapPosts(with userId: Int, by name: String) {
         
-        let vc = PostTableViewController()
-        vc.userId = userId
+        let vc = PostTableViewController(url: "https://jsonplaceholder.typicode.com/posts?userId=\(userId)", cellIdentifier: "PostCell")
         vc.userName = name
         self.navigationController?.pushViewController(vc, animated: true)
     }

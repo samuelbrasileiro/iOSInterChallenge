@@ -10,14 +10,12 @@ import UIKit
 protocol TableViewModelDelegate{
     associatedtype T where T: Codable
     
-    var tableView: UITableView {get set}
     var viewModel: TableViewModel<T> {get set}
     
     func fillData(url: String)
-    func configureTableView()
 }
 
-extension TableViewModelDelegate where Self: UIViewController{
+extension TableViewModelDelegate where Self: UITableViewController{
     
     func fillData(url: String){
         viewModel.fillItems(url: url){  [weak self] result in
@@ -34,20 +32,5 @@ extension TableViewModelDelegate where Self: UIViewController{
                 self.present(alert, animated: true)
             }
         }
-    }
-    
-    func configureTableView(){
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        tableView.estimatedRowHeight = 233
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        self.view.addSubview(tableView)
-        
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
     }
 }
