@@ -1,13 +1,12 @@
 import Alamofire
 import UIKit
 
-class PhotoTableViewController: ItemsTableViewController<PhotoTableViewCell, Photo> {
-    var userName = String()
+class PhotoTableViewController: ItemsTableViewController<Photo, PhotoTableViewCell> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Fotos de \(userName)"
+        navigationItem.title = "Fotos de \(self.viewModel.username)"
     }
     
     override func selectionFunction(item: Photo) {

@@ -1,31 +1,22 @@
 import UIKit
 
-class TitleAndDescriptionTableViewCell: UITableViewCell, ConfigurableCell {
-
+class TitleAndDescriptionTableViewCell<ItemType>: GenericCell<ItemType>
+where ItemType: TitleAndDescription {
+    
     let titleLabel = UILabel.with(name: "title")
     let descriptionLabel = UILabel.with(name: "description")
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        configure()
-        
-        setConstraints()
-    }
-    
-    func configure() {
+    override func configure() {
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(descriptionLabel)
     }
     
-    func setData<T>(item: T) {
-        if let item = item as? TitleAndDescription {
+    override func setData(item: ItemType) {
             self.titleLabel.text = item.title
             self.descriptionLabel.text = item.description
-        }
     }
     
-    func setConstraints() {
+    override func setConstraints() {
         titleLabel.leadingAnchor.constraint(
             equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
         titleLabel.trailingAnchor.constraint(
@@ -42,9 +33,5 @@ class TitleAndDescriptionTableViewCell: UITableViewCell, ConfigurableCell {
             equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
         
     }
-    func configure(title: String, description: String) { }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

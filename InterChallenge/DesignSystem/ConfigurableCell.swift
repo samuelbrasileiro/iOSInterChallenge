@@ -8,7 +8,9 @@
 import UIKit
 
 protocol ConfigurableCell: AnyObject {
-    func setData<T>(item: T)
+    associatedtype ItemType
+    
+    func setData(item: ItemType)
     func setConstraints()
     func configure()
 }

@@ -1,16 +1,15 @@
 import Alamofire
 import UIKit
 
-class CommentTableViewController: ItemsTableViewController<TitleAndDescriptionTableViewCell, Comment> {
-    var userName = String()
+class CommentTableViewController: ItemsTableViewController<Comment, TitleAndDescriptionTableViewCell<Comment>> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Comentários de \(userName)"
+        navigationItem.title = "Comentários de \(self.viewModel.username)"
     }
     
-    override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell, at cellRow: Int) {
+    override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell<Comment>, at cellRow: Int) {
         cell.selectionStyle = .none
     }
 }

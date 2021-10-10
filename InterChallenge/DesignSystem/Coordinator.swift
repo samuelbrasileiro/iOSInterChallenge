@@ -28,11 +28,50 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    func showItemsTableView<CellType, ItemType>(itemId: Int, name: String, 
-                                                cellType: CellType.Type, itemType: ItemType.Type)
-    where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
+    //TODO:- Create functional genericity
+    func showItemsTableView<ItemType, CellType>(itemId: Int, name: String, cellType: CellType.Type)
+    where CellType: GenericCell<ItemType>, ItemType: Codable {
+        let viewController = ItemsTableViewController<ItemType, CellType>(itemId: itemId)
         
-        let viewController = ItemsTableViewController<CellType, ItemType>(itemId: itemId)
+        viewController.setTitle(name: name)
+        
+        viewController.coordinator = self
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showPosts(itemId: Int, name: String) {
+        let viewController = PostTableViewController(itemId: itemId)
+        
+        viewController.setTitle(name: name)
+        
+        viewController.coordinator = self
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showComments(itemId: Int, name: String) {
+        let viewController = CommentTableViewController(itemId: itemId)
+        
+        viewController.setTitle(name: name)
+        
+        viewController.coordinator = self
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showAlbums(itemId: Int, name: String) {
+        let viewController = AlbumTableViewController(itemId: itemId)
+        
+        viewController.setTitle(name: name)
+        
+        viewController.coordinator = self
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showPhotos(itemId: Int, name: String) {
+        let viewController = PhotoTableViewController(itemId: itemId)
         
         viewController.setTitle(name: name)
         

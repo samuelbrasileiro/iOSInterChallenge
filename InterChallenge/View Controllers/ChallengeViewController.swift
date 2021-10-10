@@ -1,7 +1,8 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: ItemsTableViewController<UserTableViewCell, User> {
+class ChallengeViewController: ItemsTableViewController<User, UserTableViewCell> { 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,12 +18,14 @@ class ChallengeViewController: ItemsTableViewController<UserTableViewCell, User>
 
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
-        coordinator?.showItemsTableView(itemId: userId, name: name,
-                                        cellType: AlbumTableViewCell.self, itemType: Album.self)
+//        coordinator?.showItemsTableView(itemId: userId, name: name,
+//                                        cellType: AlbumTableViewCell.self)
+        coordinator?.showAlbums(itemId: userId, name: name)
     }
     
     func didTapPosts(with userId: Int, by name: String) {
-        coordinator?.showItemsTableView(itemId: userId, name: name,
-                                        cellType: TitleAndDescriptionTableViewCell.self, itemType: Post.self)
+//        coordinator?.showItemsTableView(itemId: userId, name: name,
+//                                        cellType: TitleAndDescriptionTableViewCell<Post>.self)
+        coordinator?.showPosts(itemId: userId, name: name)
     }
 }

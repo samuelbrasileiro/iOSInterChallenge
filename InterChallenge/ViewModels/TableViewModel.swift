@@ -20,10 +20,10 @@ class TableViewModel<ItemType: Codable> {
         
     }
     
-    func fillItems(completion: @escaping (Result<HTTPURLResponse?, Error>) -> Void) {
+    func fillItems(completion: @escaping (Result<HTTPURLResponse, AFError>) -> Void) {
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
-                completion(.failure(response.error!.underlyingError!)) // checar isso
+                completion(.failure(response.error!))
                 return
             }
             do {
@@ -34,8 +34,8 @@ class TableViewModel<ItemType: Codable> {
                     completion(.success(response.response!))
                 }
             } catch {
-                print("Error during JSON serialization: \(error.localizedDescription)")
-                completion(.failure(error))
+                completion(.failure(error.asAFError(
+                                        orFailWith: "Error during JSON serialization: \(error.localizedDescription)")))
             }
         }
     }

@@ -1,22 +1,14 @@
 import UIKit
 
-class AlbumTableViewCell: UITableViewCell, ConfigurableCell {
+class AlbumTableViewCell: GenericCell<Album> {    
 
     let albumNameLabel = UILabel.with(name: "album name")
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        configure()
-        
-        setConstraints()
-    }
-    
-    func configure() {
+    override func configure() {
         self.contentView.addSubview(albumNameLabel)
     }
     
-    func setConstraints() {
+    override func setConstraints() {
         albumNameLabel.leadingAnchor.constraint(
             equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
         albumNameLabel.topAnchor.constraint(
@@ -27,17 +19,8 @@ class AlbumTableViewCell: UITableViewCell, ConfigurableCell {
             equalTo: self.contentView.bottomAnchor, constant: -16).isActive = true
     }
     
-    func setData<T>(item: T) {
-        if let item = item as? Album {
-            self.albumNameLabel.text = item.title
-        }
+    override func setData(item: Album) {
+        self.albumNameLabel.text = item.title
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }

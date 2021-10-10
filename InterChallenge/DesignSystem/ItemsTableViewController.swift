@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ItemsTableViewController<CellType, ItemType>: UITableViewController, TableViewGeneric, CellConfigurationDelegate
-where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
-    
+class ItemsTableViewController<ItemType, CellType>: UITableViewController, TableViewGeneric, CellConfigurationDelegate
+where CellType: GenericCell<ItemType>, ItemType: Codable {
+        
     var viewModel = TableViewModel<ItemType>()
     
     weak var coordinator: MainCoordinator?
@@ -48,7 +48,6 @@ where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
     
     func setTitle(name: String) {
         self.viewModel.setUsername(name: name)
-        self.navigationController?.title = name
     }
     
     func cellConfigurationCompletion(cell: CellType, at cellRow: Int) { }
@@ -63,4 +62,29 @@ where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+}
+
+enum TableType {
+    case user
+    case post
+    case comment
+    case album
+    case photo
+    
+//    func returnType<ItemType, CellType>() -> ItemsTableViewController<ItemType, CellType>.Type
+//    where CellType: GenericCell<ItemType>, ItemType: Codable{
+//        switch(self){
+//        case .user:
+//            return ChallengeViewController
+//        case .post:
+//            return PostTableViewController.self as! T.Type
+//        case .comment:
+//            return CommentTableViewController.self as! T.Type
+//        case .album:
+//            return AlbumTableViewController.self as! T.Type
+//        case .photo:
+//            return PhotoTableViewController.self as! T.Type
+//        }
+//    }
 }

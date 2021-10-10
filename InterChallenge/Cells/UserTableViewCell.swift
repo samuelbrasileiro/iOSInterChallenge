@@ -5,7 +5,7 @@ protocol UserTableViewCellDelegate: AnyObject {
     func didTapPosts(with userId: Int, by name: String)
 }
 
-class UserTableViewCell: UITableViewCell, ConfigurableCell {
+class UserTableViewCell: GenericCell<User> {    
     
     var initialsLabel = UILabel.with(name: "initials")
     var nameLabel = UILabel.with(name: "name")
@@ -23,13 +23,9 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        configure()
-        
-        setConstraints()
     }
     
-    func configure() {
+    override func configure() {
         setInitialsView()
         setSeparator()
         setButtons()
@@ -43,6 +39,16 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
         self.contentView.addSubview(phoneLabel)
         self.contentView.addSubview(stackView)
     }
+    
+    override func setData(item: User) {
+        index = item.uid
+        initialsLabel.text = String(item.name.prefix(2))
+        nameLabel.text = item.name
+        userNameLabel.text = item.username
+        emailLabel.text = item.email
+        phoneLabel.text = item.phone
+    }
+    
     func setInitialsView() {
         initialsView = UIView()
         initialsView.backgroundColor = .systemYellow
@@ -73,7 +79,7 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
         stackView.distribution = .fillEqually
     }
     
-    func setConstraints() {
+    override func setConstraints() {
         setInitialViewConstraints()
         
         nameLabel.leadingAnchor.constraint(
@@ -129,21 +135,6 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
             equalTo: self.contentView.topAnchor, constant: 16).isActive = true
         initialsView.leadingAnchor.constraint(
             equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
-    }
-    
-    func setData<T>(item: T) {
-        if let item = item as? User {
-            index = item.uid
-            initialsLabel.text = String(item.name.prefix(2))
-            nameLabel.text = item.name
-            userNameLabel.text = item.username
-            emailLabel.text = item.email
-            phoneLabel.text = item.phone
-        }
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     @objc func albumsAction(_ sender: UIButton) {

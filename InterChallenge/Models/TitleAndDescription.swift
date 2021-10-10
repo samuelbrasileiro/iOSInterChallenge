@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TitleAndDescription: Codable {
-    var title: String {get}
-    var description: String {get}
+    var title: String {get set}
+    var description: String {get set}
+    
 }
