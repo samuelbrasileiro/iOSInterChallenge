@@ -5,6 +5,7 @@ struct Comment: TitleAndDescription {
     var description: String
     let uid: Int
     let postId: Int
+    
     enum CodingKeys: String, CodingKey {
         case uid = "id", postId, title = "name", description = "body"
     }

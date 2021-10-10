@@ -15,5 +15,6 @@ protocol ConfigurableCell: AnyObject {
 
 protocol CellConfigurationDelegate: AnyObject {
     associatedtype CellType
+    
     func cellConfigurationCompletion(cell: CellType, at cellRow: Int)
 }

@@ -9,8 +9,11 @@ import UIKit
 
 protocol TableViewGeneric {
     associatedtype ItemType where ItemType: Codable
+    
     var viewModel: TableViewModel<ItemType> {get set}
+    
     func fillData()
+    
     func selectionFunction(item: ItemType)
 }
 
@@ -18,8 +21,10 @@ extension TableViewGeneric where Self: UITableViewController {
     func fillData() {
         viewModel.fillItems {  [weak self] result in
             guard let self = self else { return }
+            
             if case .failure(let error) = result {
                 print(error)
+                
                 let alert = UIAlertController(title: "Error",
                                               message: error.localizedDescription,
                                               preferredStyle: .alert)
@@ -27,6 +32,7 @@ extension TableViewGeneric where Self: UITableViewController {
                     alert.dismiss(animated: true)
                 }))
                 self.present(alert, animated: true)
+                
             } else {
                 self.tableView.reloadData()
             }

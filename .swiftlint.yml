@@ -4,3 +4,6 @@ excluded:
   - Frameworks
   - InterChallengeUITests
   - InterChallengeTests
+
+disabled_rules: 
+  - trailing_whitespace

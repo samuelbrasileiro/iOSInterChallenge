@@ -6,6 +6,7 @@ struct User: Codable {
     let username: String
     let email: String
     let phone: String
+    
     enum CodingKeys: String, CodingKey {
         case uid = "id", name, username, email, phone
     }

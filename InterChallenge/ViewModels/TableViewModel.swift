@@ -13,8 +13,11 @@ where T: Codable {
     var items: [T] = []
     var url: String = ""
     var cellIdentifier: String = "MainCell"
+    
     init() {
+        
     }
+    
     func fillItems(completion: @escaping (Result<HTTPURLResponse?, Error>) -> Void) {
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
@@ -25,7 +28,7 @@ where T: Codable {
                 if let data = response.data {
                     let models = try JSONDecoder().decode([T].self, from: data)
                     self.items = models
-                    // self.tableView.reloadData()
+
                     completion(.success(response.response!))
                 }
             } catch {
@@ -34,9 +37,11 @@ where T: Codable {
             }
         }
     }
+    
     func setURL(itemId: Int? = nil) {
         var url = ""
-        if let itemId = itemId {
+        
+        if let itemId = itemId { // Tipos com ID
             switch T.self {
             case is Post.Type:
                 url = "https://jsonplaceholder.typicode.com/posts?userId=\(itemId)"
@@ -50,7 +55,7 @@ where T: Codable {
                 url = ""
             }
         } else {
-            switch T.self {
+            switch T.self { // Tipos sem ID
             case is User.Type:
                 url = "https://jsonplaceholder.typicode.com/users"
             default:

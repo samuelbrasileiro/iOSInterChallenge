@@ -3,24 +3,34 @@ import UIKit
 class DetailsViewController: UIViewController, DetailsViewModelDelegate {
     var viewModel = DetailsViewModel()
     weak var coodinator: MainCoordinator?
+    
     let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.sizeToFit()
         return imageView
     }()
+    
     let nameLabel = UILabel.with(name: "name")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        self.view.addSubview(detailImageView)
-        self.view.addSubview(nameLabel)
+        
+        configureView()
+        
         setConstraints()
     }
+    func configureView(){
+        self.view.addSubview(detailImageView)
+        self.view.addSubview(nameLabel)
+    }
+    
     func configure(photo: Photo) {
         self.viewModel.delegate = self
         self.viewModel.configure(photo: photo)
     }
+    
     func setConstraints() {
         detailImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         detailImageView.leadingAnchor.constraint(
@@ -42,9 +52,11 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate {
             equalTo: self.detailImageView.bottomAnchor,
             constant: 16).isActive = true
     }
+    
     func reloadName(_ name: String) {
         self.nameLabel.text = name
     }
+    
     func reloadImage(_ image: UIImage) {
         self.detailImageView.image = image
     }

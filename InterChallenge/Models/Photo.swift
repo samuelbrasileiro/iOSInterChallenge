@@ -6,6 +6,7 @@ struct Photo: Codable {
     let title: String
     let url: String
     let thumbnailUrl: String
+    
     enum CodingKeys: String, CodingKey {
         case uid="id", albumId, title, url, thumbnailUrl
     }
