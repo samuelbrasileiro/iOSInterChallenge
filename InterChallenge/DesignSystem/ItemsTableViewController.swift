@@ -46,6 +46,11 @@ where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
         return cell
     }
     
+    func setTitle(name: String) {
+        self.viewModel.setUsername(name: name)
+        self.navigationController?.title = name
+    }
+    
     func cellConfigurationCompletion(cell: CellType, at cellRow: Int) { }
     
     func selectionFunction(item: ItemType) {}

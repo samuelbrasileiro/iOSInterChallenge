@@ -8,10 +8,12 @@
 import SwiftUI
 import Alamofire
 
-class TableViewModel<T>
-where T: Codable {
-    var items: [T] = []
+class TableViewModel<ItemType: Codable> {
+    
+    var items: [ItemType] = []
+    
     var url: String = ""
+    var username: String = ""
     var cellIdentifier: String = "MainCell"
     
     init() {
@@ -26,7 +28,7 @@ where T: Codable {
             }
             do {
                 if let data = response.data {
-                    let models = try JSONDecoder().decode([T].self, from: data)
+                    let models = try JSONDecoder().decode([ItemType].self, from: data)
                     self.items = models
 
                     completion(.success(response.response!))
@@ -42,7 +44,7 @@ where T: Codable {
         var url = ""
         
         if let itemId = itemId { // Tipos com ID
-            switch T.self {
+            switch ItemType.self {
             case is Post.Type:
                 url = "https://jsonplaceholder.typicode.com/posts?userId=\(itemId)"
             case is Comment.Type:
@@ -55,7 +57,7 @@ where T: Codable {
                 url = ""
             }
         } else {
-            switch T.self { // Tipos sem ID
+            switch ItemType.self { // Tipos sem ID
             case is User.Type:
                 url = "https://jsonplaceholder.typicode.com/users"
             default:
@@ -63,5 +65,9 @@ where T: Codable {
             }
         }
         self.url = url
+    }
+    
+    func setUsername(name: String) {
+        self.username = name
     }
 }

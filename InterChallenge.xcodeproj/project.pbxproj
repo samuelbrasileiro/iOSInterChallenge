@@ -193,6 +193,7 @@
 				7EC84C312710C9A30057EB7B /* TableViewModel.swift */,
 				7EC84C382710CA1D0057EB7B /* TableViewGeneric.swift */,
 				7EC84C452710E5360057EB7B /* DetailsViewModel.swift */,
+				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -261,7 +262,6 @@
 				BA0CF8EA26336B40007BDFC8 /* AlbumTableViewController.swift */,
 				BA0CF8F926336FEB007BDFC8 /* PhotoTableViewController.swift */,
 				BA0CF9012633764E007BDFC8 /* DetailsViewController.swift */,
-				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

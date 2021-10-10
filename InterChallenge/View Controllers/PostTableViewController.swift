@@ -11,6 +11,7 @@ class PostTableViewController: ItemsTableViewController<TitleAndDescriptionTable
     }
     
     override func selectionFunction(item: Post) {
-        coordinator?.showComments(itemId: item.uid, name: userName)
+        coordinator?.showItemsTableView(itemId: item.uid, name: userName,
+                                        cellType: TitleAndDescriptionTableViewCell.self, itemType: Comment.self)
     }
 }

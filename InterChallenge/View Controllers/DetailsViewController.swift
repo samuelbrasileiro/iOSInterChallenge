@@ -21,7 +21,7 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate {
         
         setConstraints()
     }
-    func configureView(){
+    func configureView() {
         self.view.addSubview(detailImageView)
         self.view.addSubview(nameLabel)
     }

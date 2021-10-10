@@ -28,39 +28,14 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-//    func showItemsTableView<T: ItemsTableViewController>(id: Int, name: String){
-//
-//    }
-
-    func showPosts(itemId: Int, name: String) {
-        let viewController = PostTableViewController(itemId: itemId)
+    func showItemsTableView<CellType, ItemType>(itemId: Int, name: String, 
+                                                cellType: CellType.Type, itemType: ItemType.Type)
+    where CellType: UITableViewCell, CellType: ConfigurableCell, ItemType: Codable {
         
-        viewController.userName = name
-        viewController.coordinator = self
+        let viewController = ItemsTableViewController<CellType, ItemType>(itemId: itemId)
         
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func showComments(itemId: Int, name: String) {
-        let viewController = CommentTableViewController(itemId: itemId)
+        viewController.setTitle(name: name)
         
-        viewController.userName = name
-        viewController.coordinator = self
-        
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func showAlbums(itemId: Int, name: String) {
-        let viewController = AlbumTableViewController(itemId: itemId)
-        viewController.userName = name
-        viewController.coordinator = self
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func showPhotos(itemId: Int, name: String) {
-        let viewController = PhotoTableViewController(itemId: itemId)
-        
-        viewController.userName = name
         viewController.coordinator = self
         
         navigationController.pushViewController(viewController, animated: true)

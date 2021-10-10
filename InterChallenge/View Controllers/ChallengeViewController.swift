@@ -17,10 +17,12 @@ class ChallengeViewController: ItemsTableViewController<UserTableViewCell, User>
 
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
-        coordinator?.showAlbums(itemId: userId, name: name)
+        coordinator?.showItemsTableView(itemId: userId, name: name,
+                                        cellType: AlbumTableViewCell.self, itemType: Album.self)
     }
     
     func didTapPosts(with userId: Int, by name: String) {
-        coordinator?.showPosts(itemId: userId, name: name)
+        coordinator?.showItemsTableView(itemId: userId, name: name,
+                                        cellType: TitleAndDescriptionTableViewCell.self, itemType: Post.self)
     }
 }
