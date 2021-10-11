@@ -1,6 +1,7 @@
 import UIKit
 
-class DetailsViewController: UIViewController, DetailsViewModelDelegate {
+class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHandler {
+    
     var viewModel = DetailsViewModel()
     weak var coodinator: MainCoordinator?
     
@@ -16,6 +17,8 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+        
+        viewModel.errorHandler = self
         
         configureView()
         
@@ -60,4 +63,5 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate {
     func reloadImage(_ image: UIImage) {
         self.detailImageView.image = image
     }
+    
 }

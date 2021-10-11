@@ -9,32 +9,35 @@ import Alamofire
 import UIKit
 
 class DetailsViewModel {
-    var photo = UIImage()
-    var name = "name"
     
     weak var delegate: DetailsViewModelDelegate?
+    weak var errorHandler: ErrorHandler?
+    
+    var apiService = APIService<Photo>()
+    
+    var photo = UIImage()
+    var name = "name"
     
     func configure(photo: Photo) {
         name = photo.title
         delegate?.reloadName(name)
         
-        AF.download(photo.url).responseData { [weak self] response in
-            guard let self = self else {return}
-            
-            switch response.result {
-            case .success(let data):
-                if let photo = UIImage(data: data) {
-                    self.photo = photo
-                    self.delegate?.reloadImage(photo) // ARC
-                }
-            default:
-                break
+        apiService.downloadImage(from: photo.url) { result in
+            if case .success(let image) = result {
+                self.photo = image
+                self.delegate?.reloadImage(image) // ARC
+            } else if case .failure(let error) = result {
+                print(error)
+                self.delegate?.handleError(error: error)
             }
         }
     }
 }
 
 protocol DetailsViewModelDelegate: AnyObject {
+    
     func reloadName(_ name: String)
     func reloadImage(_ image: UIImage)
+    
+    func handleError(error: Error)
 }

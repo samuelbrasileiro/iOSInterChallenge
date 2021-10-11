@@ -18,6 +18,7 @@
 		7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C452710E5360057EB7B /* DetailsViewModel.swift */; };
 		7EC84C4B271110B60057EB7B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */; };
 		7EC84C51271131A40057EB7B /* TitleAndDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C50271131A40057EB7B /* TitleAndDescription.swift */; };
+		7ED18EDA2713F101004B47A9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED18ED92713F101004B47A9 /* ErrorHandler.swift */; };
 		BA0CF8B126321D30007BDFC8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0CF89A26321BAE007BDFC8 /* Alamofire.framework */; };
 		BA0CF8B226321D30007BDFC8 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA0CF89A26321BAE007BDFC8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0CF8B72632F566007BDFC8 /* UserTableViewCell.swift */; };
@@ -135,6 +136,7 @@
 		7EC84C452710E5360057EB7B /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
 		7EC84C50271131A40057EB7B /* TitleAndDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescription.swift; sourceTree = "<group>"; };
+		7ED18ED92713F101004B47A9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		BA0CF88F26321BAE007BDFC8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		BA0CF8B72632F566007BDFC8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		BA0CF8C02632F7E3007BDFC8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				7EC84C3F2710E5120057EB7B /* Coordinator.swift */,
 				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
 				7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */,
+				7ED18ED92713F101004B47A9 /* ErrorHandler.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */,
 				BA93F7F02632035800CE8AFF /* ChallengeViewController.swift in Sources */,
 				BA93F7EC2632035800CE8AFF /* AppDelegate.swift in Sources */,
+				7ED18EDA2713F101004B47A9 /* ErrorHandler.swift in Sources */,
 				BA0CF8DE263358E5007BDFC8 /* Comment.swift in Sources */,
 				BA93F7EE2632035800CE8AFF /* SceneDelegate.swift in Sources */,
 				7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */,

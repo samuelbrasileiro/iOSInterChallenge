@@ -2,6 +2,9 @@ import UIKit
 import Alamofire
 
 class PhotoTableViewCell: GenericCell<Photo> {
+    
+    var apiService = APIService<Photo>()
+    
     let titleLabel = UILabel.with(name: "title")
     
     let photoImageView: UIImageView = {
@@ -18,12 +21,10 @@ class PhotoTableViewCell: GenericCell<Photo> {
     override func setData(item: Photo) {
         self.titleLabel.text = item.title
         
-        AF.download(item.thumbnailUrl).responseData { response in
-            switch response.result {
-            case .success(let data):
-                self.photoImageView.image = UIImage(data: data)
-            default:
-                break
+        apiService.downloadImage(from: item.thumbnailUrl) { result in
+        
+            if case .success(let image) = result {
+                self.photoImageView.image = image
             }
         }
     }

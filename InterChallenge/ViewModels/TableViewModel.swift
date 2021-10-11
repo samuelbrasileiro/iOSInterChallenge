@@ -58,7 +58,6 @@ class TableViewModel<ItemType: Codable> {
         default:
             url = ""
         }
-        print(url)
     }
     
     func getUsername() -> String {

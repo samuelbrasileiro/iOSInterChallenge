@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GenericTableViewController: UITableViewController {
+protocol GenericTableViewController: UITableViewController, ErrorHandler {
     associatedtype ItemType where ItemType: Codable
     
     var viewModel: TableViewModel<ItemType> {get set}
@@ -30,13 +30,7 @@ extension GenericTableViewController where Self: UITableViewController {
             if let error = error {
                 print(error)
                 
-                let alert = UIAlertController(title: "Error",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                    alert.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
+                self.handleError(error: error)
                 
             } else {
                 self.tableView.reloadData()

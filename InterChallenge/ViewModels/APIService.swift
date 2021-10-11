@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-import Foundation
+import UIKit
 
 class APIService<ItemType: Codable> {
     
@@ -25,6 +25,21 @@ class APIService<ItemType: Codable> {
             } catch {
                 completion(.failure(error.asAFError(
                                         orFailWith: "Error during JSON serialization: \(error.localizedDescription)")))
+            }
+        }
+    }
+    
+    func downloadImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        AF.download(url).responseData { response in
+            
+            switch response.result {
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(.success(image))
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
