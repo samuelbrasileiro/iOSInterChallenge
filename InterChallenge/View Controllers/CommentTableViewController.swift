@@ -9,7 +9,7 @@ class CommentTableViewController: ItemsTableViewController<Comment, TitleAndDesc
         self.title = "Comentários de \(self.viewModel.getUsername())"
     }
     
-    override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell<Comment>, at cellRow: Int) {
+    override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell<Comment>, at row: Int) {
         cell.selectionStyle = .none
     }
 }

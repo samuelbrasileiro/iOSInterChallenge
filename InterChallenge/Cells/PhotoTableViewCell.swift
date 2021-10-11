@@ -1,11 +1,11 @@
 import UIKit
 import Alamofire
 
-class PhotoTableViewCell: GenericCell<Photo> {
+class PhotoTableViewCell: ItemCell<Photo> {
     
     var apiService = APIService<Photo>()
     
-    let titleLabel = UILabel.with(name: "title")
+    let titleLabel = UILabel.withName("title")
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -21,17 +21,18 @@ class PhotoTableViewCell: GenericCell<Photo> {
     override func setData(item: Photo) {
         self.titleLabel.text = item.title
         
-        apiService.downloadImage(from: item.thumbnailUrl) { result in
+        apiService.downloadImage(from: item.thumbnailUrl) { [weak self] result in
         
             if case .success(let image) = result {
-                self.photoImageView.image = image
+                self?.photoImageView.image = image
             }
         }
     }
     
     override func setConstraints() {
         photoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        photoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        photoImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150).isActive = true
+        
         photoImageView.leadingAnchor.constraint(
             equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
         photoImageView.topAnchor.constraint(

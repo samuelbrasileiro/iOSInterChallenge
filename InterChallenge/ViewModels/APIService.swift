@@ -8,9 +8,18 @@
 import Alamofire
 import UIKit
 
-class APIService<ItemType: Codable> {
+/// A class that handles API calls from URL
+protocol GenericAPIService {
+    associatedtype ItemType: Codable
     
-    func fetchData(from url: String, completion: @escaping (Result<ItemType, AFError>) -> Void) {
+    func fetchData(from url: String, completion: @escaping (Result<ItemType, Error>) -> Void)
+    func downloadImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void)
+}
+
+/// A class that handles API calls from URL
+class APIService<ItemType: Codable>: GenericAPIService {
+    
+    func fetchData(from url: String, completion: @escaping (Result<ItemType, Error>) -> Void) {
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
                 completion(.failure(response.error!))
@@ -23,8 +32,7 @@ class APIService<ItemType: Codable> {
                     completion(.success(models))
                 }
             } catch {
-                completion(.failure(error.asAFError(
-                                        orFailWith: "Error during JSON serialization: \(error.localizedDescription)")))
+                completion(.failure(error))
             }
         }
     }

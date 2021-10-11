@@ -5,13 +5,13 @@ protocol UserTableViewCellDelegate: AnyObject {
     func didTapPosts(with userId: Int, by name: String)
 }
 
-class UserTableViewCell: GenericCell<User> {    
+class UserTableViewCell: ItemCell<User> {    
     
-    var initialsLabel = UILabel.with(name: "initials")
-    var nameLabel = UILabel.with(name: "name")
-    var userNameLabel = UILabel.with(name: "username")
-    let emailLabel = UILabel.with(name: "email")
-    let phoneLabel = UILabel.with(name: "phone")
+    var initialsLabel = UILabel.withName("initials")
+    var nameLabel = UILabel.withName("name")
+    var userNameLabel = UILabel.withName("username")
+    let emailLabel = UILabel.withName("email")
+    let phoneLabel = UILabel.withName("phone")
     
     var initialsView = UIView()
     var separatorView = UIView()

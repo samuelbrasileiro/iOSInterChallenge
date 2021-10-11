@@ -1,8 +1,8 @@
 import UIKit
 
-class AlbumTableViewCell: GenericCell<Album> {    
+class AlbumTableViewCell: ItemCell<Album> {    
 
-    let albumNameLabel = UILabel.with(name: "album name")
+    let albumNameLabel = UILabel.withName("album name")
     
     override func configure() {
         self.contentView.addSubview(albumNameLabel)

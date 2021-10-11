@@ -1,10 +1,10 @@
 import UIKit
 
-class TitleAndDescriptionTableViewCell<ItemType>: GenericCell<ItemType>
+class TitleAndDescriptionTableViewCell<ItemType>: ItemCell<ItemType>
 where ItemType: TitleAndDescription {
     
-    let titleLabel = UILabel.with(name: "title")
-    let descriptionLabel = UILabel.with(name: "description")
+    let titleLabel = UILabel.withName("title")
+    let descriptionLabel = UILabel.withName("description")
     
     override func configure() {
         self.contentView.addSubview(titleLabel)

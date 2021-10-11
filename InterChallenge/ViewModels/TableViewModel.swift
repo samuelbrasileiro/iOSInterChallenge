@@ -8,25 +8,43 @@
 import SwiftUI
 import Alamofire
 
-class TableViewModel<ItemType: Codable> {
+/// A ViewModel for a TableView with generic codable type of items
+protocol GenericTableViewModel {
+    associatedtype ItemType
+    
+    var items: [ItemType] {get}
+    
+    var cellIdentifier: String {get}
+    
+    /// This function access an API to get data
+    /// - Parameter completion: Handle an error response from the call
+    func fillData(completion: @escaping (Error?) -> Void)
+    
+    func getItemsCount() -> Int
+    func getItem(at index: Int) -> ItemType?
+    func getCellIdentifier() -> String
+    
+}
+
+class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     
     private let apiService = APIService<[ItemType]>()
     
-    private var items: [ItemType] = []
+    var items: [ItemType] = []
+    var cellIdentifier: String = "MainCell"
     
     private var url: String = ""
     private var username: String = ""
-    private var cellIdentifier: String = "MainCell"
     
     init() {
         
     }
     
-    func fetchItemsFromAPI(completion: @escaping (Error?) -> Void) {
+    func fillData(completion: @escaping (Error?) -> Void) {
         
-        apiService.fetchData(from: url) { result in
+        apiService.fetchData(from: url) { [weak self] result in
             if case .success(let items) = result {
-                self.items = items
+                self?.items = items
                 
                 completion(nil)
                 
@@ -34,10 +52,6 @@ class TableViewModel<ItemType: Codable> {
                 completion(error)
             }
         }
-    }
-    
-    func setUsername(name: String) {
-        self.username = name
     }
     
     func setURL(itemId: Int? = nil) {
@@ -58,6 +72,10 @@ class TableViewModel<ItemType: Codable> {
         default:
             url = ""
         }
+    }
+    
+    func setUsername(name: String) {
+        self.username = name
     }
     
     func getUsername() -> String {

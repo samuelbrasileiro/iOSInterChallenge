@@ -8,6 +8,14 @@
 import Alamofire
 import UIKit
 
+protocol DetailsViewModelDelegate: AnyObject {
+    
+    func reloadName(_ name: String)
+    func reloadImage(_ image: UIImage)
+    
+    func handleError(error: Error)
+}
+
 class DetailsViewModel {
     
     weak var delegate: DetailsViewModelDelegate?
@@ -22,22 +30,14 @@ class DetailsViewModel {
         name = photo.title
         delegate?.reloadName(name)
         
-        apiService.downloadImage(from: photo.url) { result in
+        apiService.downloadImage(from: photo.url) { [weak self] result in
             if case .success(let image) = result {
-                self.photo = image
-                self.delegate?.reloadImage(image) // ARC
+                self?.photo = image
+                self?.delegate?.reloadImage(image) // ARC
             } else if case .failure(let error) = result {
                 print(error)
-                self.delegate?.handleError(error: error)
+                self?.delegate?.handleError(error: error)
             }
         }
     }
-}
-
-protocol DetailsViewModelDelegate: AnyObject {
-    
-    func reloadName(_ name: String)
-    func reloadImage(_ image: UIImage)
-    
-    func handleError(error: Error)
 }

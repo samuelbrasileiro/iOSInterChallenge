@@ -7,11 +7,12 @@
 
 import UIKit
 
+/// A Generic TableViewController that contains generic cells with codable data
 class ItemsTableViewController<ItemType, CellType>: UITableViewController, 
                                                     GenericTableViewController, CellConfigurationDelegate
-where CellType: GenericCell<ItemType>, ItemType: Codable {
+where CellType: ItemCell<ItemType>, ItemType: Codable {
         
-    internal var viewModel = TableViewModel<ItemType>()
+    var viewModel = TableViewModel<ItemType>()
     
     weak var coordinator: MainCoordinator?
     
@@ -50,7 +51,7 @@ where CellType: GenericCell<ItemType>, ItemType: Codable {
     
     func selectionFunction(item: ItemType) { }
     
-    func cellConfigurationCompletion(cell: CellType, at cellRow: Int) { }
+    func cellConfigurationCompletion(cell: CellType, at row: Int) { }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = self.viewModel.getItem(at: indexPath.row) {
@@ -62,28 +63,4 @@ where CellType: GenericCell<ItemType>, ItemType: Codable {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-enum TableType {
-    case user
-    case post
-    case comment
-    case album
-    case photo
-    
-//    func returnType<ItemType, CellType>() -> ItemsTableViewController<ItemType, CellType>.Type
-//    where CellType: GenericCell<ItemType>, ItemType: Codable{
-//        switch(self){
-//        case .user:
-//            return ChallengeViewController
-//        case .post:
-//            return PostTableViewController.self as! T.Type
-//        case .comment:
-//            return CommentTableViewController.self as! T.Type
-//        case .album:
-//            return AlbumTableViewController.self as! T.Type
-//        case .photo:
-//            return PhotoTableViewController.self as! T.Type
-//        }
-//    }
 }

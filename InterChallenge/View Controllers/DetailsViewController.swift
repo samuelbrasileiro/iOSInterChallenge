@@ -12,7 +12,7 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
         return imageView
     }()
     
-    let nameLabel = UILabel.with(name: "name")
+    let nameLabel = UILabel.withName("name")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,8 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     func configure(photo: Photo) {
         self.viewModel.delegate = self
         self.viewModel.configure(photo: photo)
+        
+        self.title = "Detalhes"
     }
     
     func setConstraints() {

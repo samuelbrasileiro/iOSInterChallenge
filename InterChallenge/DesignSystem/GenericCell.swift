@@ -7,7 +7,8 @@
 
 import UIKit
 
-class GenericCell<ItemType>: UITableViewCell, ConfigurableCell {
+/// A generic table view cell with custom codable data type
+class ItemCell<ItemType>: UITableViewCell, ConfigurableCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

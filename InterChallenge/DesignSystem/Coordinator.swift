@@ -7,13 +7,18 @@
 
 import UIKit
 
+/// A Coordinator handles the navigation of controllers
 protocol Coordinator {
+    /// The child coordinators of a coordinator
     var childCoordinators: [Coordinator] { get set }
+    
     var navigationController: UINavigationController { get set }
     
+    /// This function initiates the coordinator navigation
     func start()
 }
 
+/// The main coordinator that will handle the navigation of the app
 class MainCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -29,7 +34,7 @@ class MainCoordinator: Coordinator {
     }
     
     func showItemsTableView<ItemType, CellType>(itemId: Int, name: String, cellType: CellType.Type)
-    where CellType: GenericCell<ItemType>, ItemType: Codable {
+    where CellType: ItemCell<ItemType>, ItemType: Codable {
         let viewController = ItemsTableViewController<ItemType, CellType>(itemId: itemId)
         
         viewController.setTitle(name: name)
@@ -83,6 +88,7 @@ class MainCoordinator: Coordinator {
         let viewController = DetailsViewController()
         
         viewController.configure(photo: photo)
+        
         viewController.coodinator = self
         
         navigationController.pushViewController(viewController, animated: true)
