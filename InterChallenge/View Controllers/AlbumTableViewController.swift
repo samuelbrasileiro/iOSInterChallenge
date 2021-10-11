@@ -6,7 +6,7 @@ class AlbumTableViewController: ItemsTableViewController<Album, AlbumTableViewCe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Álbuns de \(self.viewModel.getUsername())"
+        self.title = "Álbuns de \(self.viewModel.getUsername())"
     }
     
     override func selectionFunction(item: Album) {

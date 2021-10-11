@@ -10,7 +10,7 @@ import Alamofire
 
 class TableViewModel<ItemType: Codable> {
     
-    private let apiService = APIService<ItemType>()
+    private let apiService = APIService<[ItemType]>()
     
     private var items: [ItemType] = []
     

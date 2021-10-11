@@ -6,7 +6,7 @@ class CommentTableViewController: ItemsTableViewController<Comment, TitleAndDesc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Comentários de \(self.viewModel.getUsername())"
+        self.title = "Comentários de \(self.viewModel.getUsername())"
     }
     
     override func cellConfigurationCompletion(cell: TitleAndDescriptionTableViewCell<Comment>, at cellRow: Int) {

@@ -10,7 +10,7 @@ import UIKit
 
 class APIService<ItemType: Codable> {
     
-    func fetchData(from url: String, completion: @escaping (Result<[ItemType], AFError>) -> Void) {
+    func fetchData(from url: String, completion: @escaping (Result<ItemType, AFError>) -> Void) {
         AF.request(url).validate().responseJSON { response in
             guard response.error == nil else {
                 completion(.failure(response.error!))
@@ -18,7 +18,7 @@ class APIService<ItemType: Codable> {
             }
             do {
                 if let data = response.data {
-                    let models = try JSONDecoder().decode([ItemType].self, from: data)
+                    let models = try JSONDecoder().decode(ItemType.self, from: data)
 
                     completion(.success(models))
                 }

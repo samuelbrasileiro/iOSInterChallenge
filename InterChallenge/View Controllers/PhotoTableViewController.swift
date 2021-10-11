@@ -6,7 +6,7 @@ class PhotoTableViewController: ItemsTableViewController<Photo, PhotoTableViewCe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Fotos de \(self.viewModel.getUsername())"
+        self.title = "Fotos de \(self.viewModel.getUsername())"
     }
     
     override func selectionFunction(item: Photo) {
