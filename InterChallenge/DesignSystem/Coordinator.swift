@@ -28,7 +28,6 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    //TODO:- Create functional genericity
     func showItemsTableView<ItemType, CellType>(itemId: Int, name: String, cellType: CellType.Type)
     where CellType: GenericCell<ItemType>, ItemType: Codable {
         let viewController = ItemsTableViewController<ItemType, CellType>(itemId: itemId)

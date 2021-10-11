@@ -10,64 +10,73 @@ import Alamofire
 
 class TableViewModel<ItemType: Codable> {
     
-    var items: [ItemType] = []
+    private let apiService = APIService<ItemType>()
     
-    var url: String = ""
-    var username: String = ""
-    var cellIdentifier: String = "MainCell"
+    private var items: [ItemType] = []
+    
+    private var url: String = ""
+    private var username: String = ""
+    private var cellIdentifier: String = "MainCell"
     
     init() {
         
     }
     
-    func fillItems(completion: @escaping (Result<HTTPURLResponse, AFError>) -> Void) {
-        AF.request(url).validate().responseJSON { response in
-            guard response.error == nil else {
-                completion(.failure(response.error!))
-                return
-            }
-            do {
-                if let data = response.data {
-                    let models = try JSONDecoder().decode([ItemType].self, from: data)
-                    self.items = models
-
-                    completion(.success(response.response!))
-                }
-            } catch {
-                completion(.failure(error.asAFError(
-                                        orFailWith: "Error during JSON serialization: \(error.localizedDescription)")))
-            }
-        }
-    }
-    
-    func setURL(itemId: Int? = nil) {
-        var url = ""
+    func fetchItemsFromAPI(completion: @escaping (Error?) -> Void) {
         
-        if let itemId = itemId { // Tipos com ID
-            switch ItemType.self {
-            case is Post.Type:
-                url = "https://jsonplaceholder.typicode.com/posts?userId=\(itemId)"
-            case is Comment.Type:
-                url = "https://jsonplaceholder.typicode.com/comments?postId=\(itemId)"
-            case is Album.Type:
-                url = "https://jsonplaceholder.typicode.com/albums?userId=\(itemId)"
-            case is Photo.Type:
-                url = "https://jsonplaceholder.typicode.com/photos?albumId=\(itemId)"
-            default:
-                url = ""
-            }
-        } else {
-            switch ItemType.self { // Tipos sem ID
-            case is User.Type:
-                url = "https://jsonplaceholder.typicode.com/users"
-            default:
-                url = ""
+        apiService.fetchData(from: url) { result in
+            if case .success(let items) = result {
+                self.items = items
+                
+                completion(nil)
+                
+            } else if case .failure(let error) = result {
+                completion(error)
             }
         }
-        self.url = url
     }
     
     func setUsername(name: String) {
         self.username = name
+    }
+    
+    func setURL(itemId: Int? = nil) {
+        
+        let idText = itemId == nil ? "" : String(itemId!)
+        
+        switch ItemType.self {
+        case is User.Type:
+            url = "https://jsonplaceholder.typicode.com/users"
+        case is Post.Type:
+            url = "https://jsonplaceholder.typicode.com/posts?userId=\(idText)"
+        case is Comment.Type:
+            url = "https://jsonplaceholder.typicode.com/comments?postId=\(idText)"
+        case is Album.Type:
+            url = "https://jsonplaceholder.typicode.com/albums?userId=\(idText)"
+        case is Photo.Type:
+            url = "https://jsonplaceholder.typicode.com/photos?albumId=\(idText)"
+        default:
+            url = ""
+        }
+        print(url)
+    }
+    
+    func getUsername() -> String {
+        return self.username
+    }
+    
+    func getCellIdentifier() -> String {
+        return self.cellIdentifier
+    }
+    
+    func getItemsCount() -> Int {
+        return items.count
+    }
+    
+    func getItem(at index: Int) -> ItemType? {
+        if index < items.count {
+            return items[index]
+        }
+        return nil
     }
 }

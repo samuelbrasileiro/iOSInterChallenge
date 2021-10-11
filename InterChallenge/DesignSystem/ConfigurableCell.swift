@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ConfigurableCell: AnyObject {
+protocol ConfigurableCell: UITableViewCell {
     associatedtype ItemType
     
     func setData(item: ItemType)

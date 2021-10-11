@@ -10,9 +10,10 @@
 		35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */; };
 		7E1EE8852713127E00266CD1 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1EE8842713127E00266CD1 /* GenericCell.swift */; };
 		7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */; };
+		7E80E8852713D1D7002218AA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80E8842713D1D7002218AA /* APIService.swift */; };
 		7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* Label+withName.swift */; };
 		7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* TableViewModel.swift */; };
-		7EC84C392710CA1D0057EB7B /* TableViewGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* TableViewGeneric.swift */; };
+		7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */; };
 		7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C3F2710E5120057EB7B /* Coordinator.swift */; };
 		7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C452710E5360057EB7B /* DetailsViewModel.swift */; };
 		7EC84C4B271110B60057EB7B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */; };
@@ -126,9 +127,10 @@
 		35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsesAutoLayout.swift; sourceTree = "<group>"; };
 		7E1EE8842713127E00266CD1 /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
+		7E80E8842713D1D7002218AA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		7EAC21B427106D1B00CBDE2A /* Label+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+withName.swift"; sourceTree = "<group>"; };
 		7EC84C312710C9A30057EB7B /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
-		7EC84C382710CA1D0057EB7B /* TableViewGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewGeneric.swift; sourceTree = "<group>"; };
+		7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		7EC84C3F2710E5120057EB7B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7EC84C452710E5360057EB7B /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				7EC84C312710C9A30057EB7B /* TableViewModel.swift */,
 				7EC84C452710E5360057EB7B /* DetailsViewModel.swift */,
+				7E80E8842713D1D7002218AA /* APIService.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -204,7 +207,7 @@
 				7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */,
 				7EC84C3F2710E5120057EB7B /* Coordinator.swift */,
 				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
-				7EC84C382710CA1D0057EB7B /* TableViewGeneric.swift */,
+				7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -557,7 +560,8 @@
 				BA93F7EC2632035800CE8AFF /* AppDelegate.swift in Sources */,
 				BA0CF8DE263358E5007BDFC8 /* Comment.swift in Sources */,
 				BA93F7EE2632035800CE8AFF /* SceneDelegate.swift in Sources */,
-				7EC84C392710CA1D0057EB7B /* TableViewGeneric.swift in Sources */,
+				7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */,
+				7E80E8852713D1D7002218AA /* APIService.swift in Sources */,
 				BA0CF8DA26335759007BDFC8 /* Post.swift in Sources */,
 				7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */,
 				7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */,

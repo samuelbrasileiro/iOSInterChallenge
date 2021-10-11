@@ -6,13 +6,13 @@ class PostTableViewController: ItemsTableViewController<Post, TitleAndDescriptio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Postagens de \(self.viewModel.username)"
+        self.title = "Postagens de \(self.viewModel.getUsername())"
     }
     
     override func selectionFunction(item: Post) {
         
 //        coordinator?.showItemsTableView(itemId: item.uid, name: viewModel.username,
 //                                        cellType: TitleAndDescriptionTableViewCell<Comment>.self)
-        coordinator?.showComments(itemId: item.uid, name: viewModel.username)
+        coordinator?.showComments(itemId: item.uid, name: viewModel.getUsername())
     }
 }

@@ -7,22 +7,27 @@
 
 import UIKit
 
-protocol TableViewGeneric {
+protocol GenericTableViewController: UITableViewController {
     associatedtype ItemType where ItemType: Codable
     
     var viewModel: TableViewModel<ItemType> {get set}
     
-    func fillData()
-    
+    func setItems()
+    func setTitle(name: String)
     func selectionFunction(item: ItemType)
 }
 
-extension TableViewGeneric where Self: UITableViewController {
-    func fillData() {
-        viewModel.fillItems {  [weak self] result in
+extension GenericTableViewController where Self: UITableViewController {
+    
+    func setTitle(name: String) {
+        self.viewModel.setUsername(name: name)
+    }
+    
+    func setItems() {
+        viewModel.fetchItemsFromAPI {  [weak self] error in
             guard let self = self else { return }
             
-            if case .failure(let error) = result {
+            if let error = error {
                 print(error)
                 
                 let alert = UIAlertController(title: "Error",

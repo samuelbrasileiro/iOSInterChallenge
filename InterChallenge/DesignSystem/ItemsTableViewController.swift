@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ItemsTableViewController<ItemType, CellType>: UITableViewController, TableViewGeneric, CellConfigurationDelegate
+class ItemsTableViewController<ItemType, CellType>: UITableViewController, 
+                                                    GenericTableViewController, CellConfigurationDelegate
 where CellType: GenericCell<ItemType>, ItemType: Codable {
         
-    var viewModel = TableViewModel<ItemType>()
+    internal var viewModel = TableViewModel<ItemType>()
     
     weak var coordinator: MainCoordinator?
     
@@ -24,39 +25,37 @@ where CellType: GenericCell<ItemType>, ItemType: Codable {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        tableView.register(CellType.self, forCellReuseIdentifier: viewModel.cellIdentifier)
+        tableView.register(CellType.self, forCellReuseIdentifier: viewModel.getCellIdentifier())
         
-        self.fillData()
+        self.setItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.items.count
+        return self.viewModel.getItemsCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: viewModel.cellIdentifier, for: indexPath) as? CellType else {
+                withIdentifier: viewModel.getCellIdentifier(), for: indexPath) as? CellType else {
             return UITableViewCell()
         }
-        let item = self.viewModel.items[indexPath.row]
+        if let item = self.viewModel.getItem(at: indexPath.row) {
         
-        cell.setData(item: item)
-        cellConfigurationCompletion(cell: cell, at: indexPath.row)
+            cell.setData(item: item)
+            cellConfigurationCompletion(cell: cell, at: indexPath.row)
+        }
         
         return cell
     }
     
-    func setTitle(name: String) {
-        self.viewModel.setUsername(name: name)
-    }
+    func selectionFunction(item: ItemType) { }
     
     func cellConfigurationCompletion(cell: CellType, at cellRow: Int) { }
     
-    func selectionFunction(item: ItemType) {}
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = self.viewModel.items[indexPath.row]
-        selectionFunction(item: item)
+        if let item = self.viewModel.getItem(at: indexPath.row) {
+            selectionFunction(item: item)
+        }
     }
     
     required init?(coder: NSCoder) {
