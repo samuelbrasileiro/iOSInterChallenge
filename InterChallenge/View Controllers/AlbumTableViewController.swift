@@ -10,8 +10,6 @@ class AlbumTableViewController: ItemsTableViewController<Album, AlbumTableViewCe
     }
     
     override func selectionFunction(item: Album) {
-//        coordinator?.showItemsTableView(itemId: item.uid, name: self.viewModel.username,
-//                                        cellType: PhotoTableViewCell.self)
         coordinator?.showPhotos(itemId: item.uid, name: self.viewModel.getUsername())
     }
 }

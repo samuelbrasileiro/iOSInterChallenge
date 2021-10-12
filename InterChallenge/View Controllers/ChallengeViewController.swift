@@ -18,14 +18,10 @@ class ChallengeViewController: ItemsTableViewController<User, UserTableViewCell>
 
 extension ChallengeViewController: UserTableViewCellDelegate {
     func didTapAlbums(with userId: Int, by name: String) {
-//        coordinator?.showItemsTableView(itemId: userId, name: name,
-//                                        cellType: AlbumTableViewCell.self)
         coordinator?.showAlbums(itemId: userId, name: name)
     }
     
     func didTapPosts(with userId: Int, by name: String) {
-//        coordinator?.showItemsTableView(itemId: userId, name: name,
-//                                        cellType: TitleAndDescriptionTableViewCell<Post>.self)
         coordinator?.showPosts(itemId: userId, name: name)
     }
 }

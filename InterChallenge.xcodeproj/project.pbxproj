@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */; };
-		7E1EE8852713127E00266CD1 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1EE8842713127E00266CD1 /* GenericCell.swift */; };
+		7E1EE8852713127E00266CD1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1EE8842713127E00266CD1 /* ItemCell.swift */; };
 		7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */; };
 		7E80E8852713D1D7002218AA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80E8842713D1D7002218AA /* APIService.swift */; };
 		7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* Label+withName.swift */; };
@@ -126,8 +125,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsesAutoLayout.swift; sourceTree = "<group>"; };
-		7E1EE8842713127E00266CD1 /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
+		7E1EE8842713127E00266CD1 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		7E80E8842713D1D7002218AA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		7EAC21B427106D1B00CBDE2A /* Label+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+withName.swift"; sourceTree = "<group>"; };
@@ -214,7 +212,7 @@
 				7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */,
 				7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */,
 				7ED18ED92713F101004B47A9 /* ErrorHandler.swift */,
-				7E1EE8842713127E00266CD1 /* GenericCell.swift */,
+				7E1EE8842713127E00266CD1 /* ItemCell.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -310,7 +308,6 @@
 				BA93F7EB2632035800CE8AFF /* AppDelegate.swift */,
 				7EAC21B427106D1B00CBDE2A /* Label+withName.swift */,
 				BA93F7ED2632035800CE8AFF /* SceneDelegate.swift */,
-				35E7D961270F9D8800CCD813 /* UsesAutoLayout.swift */,
 				BA93F7F42632035A00CE8AFF /* Assets.xcassets */,
 				BA93F7F62632035A00CE8AFF /* LaunchScreen.storyboard */,
 				BA93F7F92632035A00CE8AFF /* Info.plist */,
@@ -552,7 +549,7 @@
 				BA0CF8EF26336B59007BDFC8 /* Album.swift in Sources */,
 				BA0CF8C12632F7E3007BDFC8 /* User.swift in Sources */,
 				BA0CF8EB26336B40007BDFC8 /* AlbumTableViewController.swift in Sources */,
-				7E1EE8852713127E00266CD1 /* GenericCell.swift in Sources */,
+				7E1EE8852713127E00266CD1 /* ItemCell.swift in Sources */,
 				BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */,
 				7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */,
 				7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */,
@@ -562,7 +559,6 @@
 				7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */,
 				BA0CF8FA26336FEB007BDFC8 /* PhotoTableViewController.swift in Sources */,
 				BA0CF9022633764E007BDFC8 /* DetailsViewController.swift in Sources */,
-				35E7D962270F9D8900CCD813 /* UsesAutoLayout.swift in Sources */,
 				BA93F7F02632035800CE8AFF /* ChallengeViewController.swift in Sources */,
 				BA93F7EC2632035800CE8AFF /* AppDelegate.swift in Sources */,
 				7ED18EDA2713F101004B47A9 /* ErrorHandler.swift in Sources */,
