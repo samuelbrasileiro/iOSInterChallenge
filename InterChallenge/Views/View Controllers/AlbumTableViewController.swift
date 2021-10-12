@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class AlbumTableViewController: ItemsTableViewController<Album, AlbumTableViewCell> {
+class AlbumTableViewController: ItemTableViewController<Album, AlbumTableViewCell> {
     
     override func viewDidLoad() {
         super.viewDidLoad()

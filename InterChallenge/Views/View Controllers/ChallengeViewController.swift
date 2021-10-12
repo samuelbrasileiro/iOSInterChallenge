@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: ItemsTableViewController<User, UserTableViewCell> { 
+class ChallengeViewController: ItemTableViewController<User, UserTableViewCell> { 
     
     override func viewDidLoad() {
         super.viewDidLoad()

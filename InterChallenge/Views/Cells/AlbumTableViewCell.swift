@@ -5,7 +5,7 @@ class AlbumTableViewCell: ItemCell<Album> {
     let albumNameLabel = UILabel.withName("album name")
     
     override func configure() {
-        self.contentView.addSubview(albumNameLabel)
+        self.contentView.add(subview: albumNameLabel)
     }
     
     override func setConstraints() {

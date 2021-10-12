@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class CommentTableViewController: ItemsTableViewController<Comment, TitleAndDescriptionTableViewCell<Comment>> {
+class CommentTableViewController: ItemTableViewController<Comment, TitleAndDescriptionTableViewCell<Comment>> {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E04F0362715517200BDB721 /* UIView+add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04F0352715517200BDB721 /* UIView+add.swift */; };
 		7E1EE8852713127E00266CD1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1EE8842713127E00266CD1 /* ItemCell.swift */; };
+		7E269D362715590F00FFD19C /* UIView+make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E269D352715590F00FFD19C /* UIView+make.swift */; };
 		7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */; };
 		7E80E8852713D1D7002218AA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80E8842713D1D7002218AA /* APIService.swift */; };
-		7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* Label+withName.swift */; };
+		7EAC21B527106D1B00CBDE2A /* UILabel+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */; };
 		7EC011E627149D0E00623449 /* CellConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */; };
 		7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* TableViewModel.swift */; };
 		7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */; };
 		7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C3F2710E5120057EB7B /* Coordinator.swift */; };
 		7EC84C462710E5360057EB7B /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C452710E5360057EB7B /* DetailsViewModel.swift */; };
-		7EC84C4B271110B60057EB7B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */; };
+		7EC84C4B271110B60057EB7B /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C4A271110B60057EB7B /* ItemTableViewController.swift */; };
 		7EC84C51271131A40057EB7B /* TitleAndDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C50271131A40057EB7B /* TitleAndDescription.swift */; };
 		7ED18EDA2713F101004B47A9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED18ED92713F101004B47A9 /* ErrorHandler.swift */; };
 		BA0CF8B126321D30007BDFC8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0CF89A26321BAE007BDFC8 /* Alamofire.framework */; };
@@ -125,16 +127,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E04F0352715517200BDB721 /* UIView+add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+add.swift"; sourceTree = "<group>"; };
 		7E1EE8842713127E00266CD1 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		7E269D352715590F00FFD19C /* UIView+make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+make.swift"; sourceTree = "<group>"; };
 		7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		7E80E8842713D1D7002218AA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		7EAC21B427106D1B00CBDE2A /* Label+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+withName.swift"; sourceTree = "<group>"; };
+		7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+withName.swift"; sourceTree = "<group>"; };
 		7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurationDelegate.swift; sourceTree = "<group>"; };
 		7EC84C312710C9A30057EB7B /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		7EC84C3F2710E5120057EB7B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7EC84C452710E5360057EB7B /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
-		7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
+		7EC84C4A271110B60057EB7B /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		7EC84C50271131A40057EB7B /* TitleAndDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescription.swift; sourceTree = "<group>"; };
 		7ED18ED92713F101004B47A9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		BA0CF88F26321BAE007BDFC8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -193,28 +197,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E269D202715574A00FFD19C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BA93F7EB2632035800CE8AFF /* AppDelegate.swift */,
+				BA93F7ED2632035800CE8AFF /* SceneDelegate.swift */,
+				7EC84C3F2710E5120057EB7B /* Coordinator.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		7E269D2A271557B500FFD19C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
+				7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */,
+				7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */,
+				7ED18ED92713F101004B47A9 /* ErrorHandler.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7E269D2D271557F500FFD19C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E80E8842713D1D7002218AA /* APIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7E269D30271558A900FFD19C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA0CF8C626334817007BDFC8 /* View Controllers */,
+				BA0CF8B62632F552007BDFC8 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7E269D3D2715593100FFD19C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E04F0352715517200BDB721 /* UIView+add.swift */,
+				7E269D352715590F00FFD19C /* UIView+make.swift */,
+				7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7EC84C352710C9AA0057EB7B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				7EC84C312710C9A30057EB7B /* TableViewModel.swift */,
 				7EC84C452710E5360057EB7B /* DetailsViewModel.swift */,
-				7E80E8842713D1D7002218AA /* APIService.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		7EC84C49271110860057EB7B /* DesignSystem */ = {
+		7EC84C49271110860057EB7B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7EC84C4A271110B60057EB7B /* ItemsTableViewController.swift */,
-				7EC84C3F2710E5120057EB7B /* Coordinator.swift */,
-				7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */,
-				7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */,
-				7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */,
-				7ED18ED92713F101004B47A9 /* ErrorHandler.swift */,
+				7EC84C4A271110B60057EB7B /* ItemTableViewController.swift */,
 				7E1EE8842713127E00266CD1 /* ItemCell.swift */,
+				7E269D2A271557B500FFD19C /* Protocols */,
 			);
-			path = DesignSystem;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		BA0CF86C26321AE6007BDFC8 /* Frameworks */ = {
@@ -300,14 +347,13 @@
 		BA93F7EA2632035800CE8AFF /* InterChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				7EC84C49271110860057EB7B /* DesignSystem */,
+				7E269D202715574A00FFD19C /* Application */,
+				7EC84C49271110860057EB7B /* Components */,
+				7E269D2D271557F500FFD19C /* Network */,
 				7EC84C352710C9AA0057EB7B /* ViewModels */,
-				BA0CF8C626334817007BDFC8 /* View Controllers */,
+				7E269D30271558A900FFD19C /* Views */,
 				BA0CF8BF2632F7CD007BDFC8 /* Models */,
-				BA0CF8B62632F552007BDFC8 /* Cells */,
-				BA93F7EB2632035800CE8AFF /* AppDelegate.swift */,
-				7EAC21B427106D1B00CBDE2A /* Label+withName.swift */,
-				BA93F7ED2632035800CE8AFF /* SceneDelegate.swift */,
+				7E269D3D2715593100FFD19C /* Extensions */,
 				BA93F7F42632035A00CE8AFF /* Assets.xcassets */,
 				BA93F7F62632035A00CE8AFF /* LaunchScreen.storyboard */,
 				BA93F7F92632035A00CE8AFF /* Info.plist */,
@@ -544,15 +590,17 @@
 			files = (
 				BA0CF8FE26337023007BDFC8 /* Photo.swift in Sources */,
 				BA0CF8F526336DB5007BDFC8 /* PhotoTableViewCell.swift in Sources */,
-				7EC84C4B271110B60057EB7B /* ItemsTableViewController.swift in Sources */,
+				7EC84C4B271110B60057EB7B /* ItemTableViewController.swift in Sources */,
 				7EC84C51271131A40057EB7B /* TitleAndDescription.swift in Sources */,
 				BA0CF8EF26336B59007BDFC8 /* Album.swift in Sources */,
 				BA0CF8C12632F7E3007BDFC8 /* User.swift in Sources */,
+				7E04F0362715517200BDB721 /* UIView+add.swift in Sources */,
 				BA0CF8EB26336B40007BDFC8 /* AlbumTableViewController.swift in Sources */,
 				7E1EE8852713127E00266CD1 /* ItemCell.swift in Sources */,
 				BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */,
 				7EC84C402710E5120057EB7B /* Coordinator.swift in Sources */,
 				7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */,
+				7E269D362715590F00FFD19C /* UIView+make.swift in Sources */,
 				7EC011E627149D0E00623449 /* CellConfigurationDelegate.swift in Sources */,
 				BA0CF8D626334FF0007BDFC8 /* CommentTableViewController.swift in Sources */,
 				BA0CF8E426336A9A007BDFC8 /* AlbumTableViewCell.swift in Sources */,
@@ -567,7 +615,7 @@
 				7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */,
 				7E80E8852713D1D7002218AA /* APIService.swift in Sources */,
 				BA0CF8DA26335759007BDFC8 /* Post.swift in Sources */,
-				7EAC21B527106D1B00CBDE2A /* Label+withName.swift in Sources */,
+				7EAC21B527106D1B00CBDE2A /* UILabel+withName.swift in Sources */,
 				7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */,
 				BA0CF8D226334FDB007BDFC8 /* PostTableViewController.swift in Sources */,
 				BA0CF8CD26334BC3007BDFC8 /* TitleAndDescriptionTableViewCell.swift in Sources */,

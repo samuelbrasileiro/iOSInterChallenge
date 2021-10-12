@@ -1,10 +1,3 @@
-//
-//  CellConfigurationDelegate.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 11/10/21.
-//
-
 import UIKit
 
 protocol CellConfigurationDelegate: AnyObject {

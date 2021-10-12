@@ -1,21 +1,15 @@
-//
-//  ItemsTableViewController.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
 import UIKit
 
 /// A Generic TableViewController that contains generic cells with codable data
-class ItemsTableViewController<ItemType, CellType>: UITableViewController, 
+class ItemTableViewController<ItemType, CellType>: UITableViewController, 
                                                     GenericTableViewController, CellConfigurationDelegate
 where CellType: ItemCell<ItemType>, ItemType: Codable {
-        
-    var viewModel = TableViewModel<ItemType>()
     
+    // MARK: - Attributes 
+    var viewModel = TableViewModel<ItemType>()
     weak var coordinator: MainCoordinator?
     
+    // MARK: - Initializers 
     init(itemId: Int? = nil) {
         super.init(nibName: nil, bundle: nil)
         
@@ -31,6 +25,17 @@ where CellType: ItemCell<ItemType>, ItemType: Codable {
         self.setItems()
     }
     
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Functions
+    func selectionFunction(item: ItemType) { }
+    
+    func cellConfigurationCompletion(cell: CellType, at row: Int) { }
+    
+    // MARK: - TableViewDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.getItemsCount()
     }
@@ -49,18 +54,10 @@ where CellType: ItemCell<ItemType>, ItemType: Codable {
         return cell
     }
     
-    func selectionFunction(item: ItemType) { }
-    
-    func cellConfigurationCompletion(cell: CellType, at row: Int) { }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = self.viewModel.getItem(at: indexPath.row) {
             selectionFunction(item: item)
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

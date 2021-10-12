@@ -21,10 +21,6 @@ class UserTableViewCell: ItemCell<User> {
     
     weak var delegate: UserTableViewCellDelegate?
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
     override func configure() {
         setInitialsView()
         setSeparator()
@@ -82,9 +78,9 @@ class UserTableViewCell: ItemCell<User> {
     override func setConstraints() {
         setInitialViewConstraints()
         
-        nameLabel.leadingAnchor.constraint(
-            equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: initialsView.bottomAnchor, constant: 16).isActive = true
+        nameLabel
+            .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)
+            .make(.top, equalTo: initialsView, attribute: .bottom, constant: 16)
         
         separatorView.topAnchor.constraint(
             equalTo: self.contentView.topAnchor, constant: 8).isActive = true
@@ -145,7 +141,4 @@ class UserTableViewCell: ItemCell<User> {
         delegate?.didTapPosts(with: index, by: nameLabel.text ?? "")
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

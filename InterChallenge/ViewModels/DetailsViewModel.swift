@@ -23,16 +23,12 @@ class DetailsViewModel {
     
     var apiService = APIService<Photo>()
     
-    var photo = UIImage()
-    var name = "name"
-    
     func configure(photo: Photo) {
-        name = photo.title
-        delegate?.reloadName(name)
+
+        delegate?.reloadName(photo.title)
         
         apiService.downloadImage(from: photo.url) { [weak self] result in
             if case .success(let image) = result {
-                self?.photo = image
                 self?.delegate?.reloadImage(image) // ARC
             } else if case .failure(let error) = result {
                 print(error)

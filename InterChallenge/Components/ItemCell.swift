@@ -1,10 +1,3 @@
-//
-//  GenericCell.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 10/10/21.
-//
-
 import UIKit
 
 /// A generic table view cell with custom codable data type
@@ -14,7 +7,6 @@ class ItemCell<ItemType>: UITableViewCell, ConfigurableCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configure()
-        
         setConstraints()
     }
     
@@ -23,12 +15,13 @@ class ItemCell<ItemType>: UITableViewCell, ConfigurableCell {
     func setConstraints() { }
     
     func configure() { }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class PostTableViewController: ItemsTableViewController<Post, TitleAndDescriptionTableViewCell<Post>> {
+class PostTableViewController: ItemTableViewController<Post, TitleAndDescriptionTableViewCell<Post>> {
     
     override func viewDidLoad() {
         super.viewDidLoad()

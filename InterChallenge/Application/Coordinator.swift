@@ -1,17 +1,9 @@
-//
-//  Coordinator.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
 import UIKit
 
 /// A Coordinator handles the navigation of controllers
 protocol Coordinator {
     /// The child coordinators of a coordinator
     var childCoordinators: [Coordinator] { get set }
-    
     var navigationController: UINavigationController { get set }
     
     /// This function initiates the coordinator navigation
@@ -32,54 +24,38 @@ class MainCoordinator: Coordinator {
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
-    
+
     func showPosts(itemId: Int, name: String) {
         let viewController = PostTableViewController(itemId: itemId)
-        
-        viewController.setTitle(name: name)
-        
-        viewController.coordinator = self
-        
-        navigationController.pushViewController(viewController, animated: true)
+        showViewController(viewController, name: name)
     }
     
     func showComments(itemId: Int, name: String) {
         let viewController = CommentTableViewController(itemId: itemId)
-        
-        viewController.setTitle(name: name)
-        
-        viewController.coordinator = self
-        
-        navigationController.pushViewController(viewController, animated: true)
+        showViewController(viewController, name: name)
     }
     
     func showAlbums(itemId: Int, name: String) {
         let viewController = AlbumTableViewController(itemId: itemId)
-        
-        viewController.setTitle(name: name)
-        
-        viewController.coordinator = self
-        
-        navigationController.pushViewController(viewController, animated: true)
+        showViewController(viewController, name: name)
     }
     
     func showPhotos(itemId: Int, name: String) {
         let viewController = PhotoTableViewController(itemId: itemId)
-        
-        viewController.setTitle(name: name)
-        
-        viewController.coordinator = self
-        
-        navigationController.pushViewController(viewController, animated: true)
+        showViewController(viewController, name: name)
     }
     
     func showDetails(photo: Photo) {
         let viewController = DetailsViewController()
-        
         viewController.configure(photo: photo)
-        
         viewController.coodinator = self
-        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showViewController<ItemType, CellType>(_ viewController: ItemsTableViewController<ItemType, CellType>,
+                                                name: String) {
+        viewController.coordinator = self
+        viewController.setTitle(name: name)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

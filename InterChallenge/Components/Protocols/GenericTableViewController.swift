@@ -1,10 +1,3 @@
-//
-//  fillDataDelegate.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
 import UIKit
 
 protocol GenericTableViewController: UITableViewController, ErrorHandler {
@@ -35,12 +28,9 @@ extension GenericTableViewController where Self: UITableViewController {
     
     func setItems() {
         viewModel.fillData {  [weak self] error in
-            
             if let error = error {
                 print(error)
-                
                 self?.handleError(error: error)
-                
             } else {
                 self?.update()
             }

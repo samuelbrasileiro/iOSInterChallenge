@@ -36,10 +36,6 @@ class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     private var url: String = ""
     private var username: String = ""
     
-    init() {
-        
-    }
-    
     func fillData(completion: @escaping (Error?) -> Void) {
         
         apiService.fetchData(from: url) { [weak self] result in
@@ -55,8 +51,10 @@ class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     }
     
     func setURL(itemId: Int? = nil) {
-        
-        let idText = itemId == nil ? "" : String(itemId!)
+        var idText = ""
+        if let itemId = itemId {
+            idText = String(itemId)
+        }
         
         switch ItemType.self {
         case is User.Type:

@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 09/10/21.
-//
-
 import UIKit
 
 /// A UITableViewCell conformance to have generic configuration functions

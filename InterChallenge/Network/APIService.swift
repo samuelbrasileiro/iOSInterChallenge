@@ -21,15 +21,15 @@ class APIService<ItemType: Codable>: GenericAPIService {
     
     func fetchData(from url: String, completion: @escaping (Result<ItemType, Error>) -> Void) {
         AF.request(url).validate().responseJSON { response in
-            guard response.error == nil else {
-                completion(.failure(response.error!))
+            if let error = response.error {
+                completion(.failure(error))
                 return
             }
+            
             do {
                 if let data = response.data {
-                    let models = try JSONDecoder().decode(ItemType.self, from: data)
-
-                    completion(.success(models))
+                    let model = try JSONDecoder().decode(ItemType.self, from: data)
+                    completion(.success(model))
                 }
             } catch {
                 completion(.failure(error))
@@ -45,7 +45,6 @@ class APIService<ItemType: Codable>: GenericAPIService {
                 if let image = UIImage(data: data) {
                     completion(.success(image))
                 }
-                
             case .failure(let error):
                 completion(.failure(error))
             }

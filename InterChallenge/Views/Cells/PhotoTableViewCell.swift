@@ -14,8 +14,9 @@ class PhotoTableViewCell: ItemCell<Photo> {
     }()
     
     override func configure() {
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(photoImageView)
+        contentView
+            .add(subview: titleLabel)
+            .add(subview: photoImageView)
     }
     
     override func setData(item: Photo) {

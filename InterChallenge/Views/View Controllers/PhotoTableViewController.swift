@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class PhotoTableViewController: ItemsTableViewController<Photo, PhotoTableViewCell> {
+class PhotoTableViewController: ItemTableViewController<Photo, PhotoTableViewCell> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
