@@ -9,7 +9,7 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.sizeToFit()
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -44,7 +44,8 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     func setConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         detailImageView
-            .make(.height, equalTo: nil, constant: 250)
+            .make(.height, lessThanOrEqualTo: nil, constant: 250)
+            .make(.height, lessThanOrEqualTo: safeArea, attribute: .height, multipliedBy: 0.7)
             .make(.leading, equalTo: safeArea, attribute: .leading, constant: 24)
             .make(.trailing, equalTo: safeArea, attribute: .trailing, constant: -24)
             .make(.top, equalTo: safeArea, attribute: .top, constant: 16)
@@ -53,6 +54,13 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
             .make(.leading, equalTo: safeArea, attribute: .leading, constant: 24)
             .make(.trailing, equalTo: safeArea, attribute: .trailing, constant: -24)
             .make(.top, equalTo: detailImageView, attribute: .bottom, constant: 16)
+        
+        // Foi adicionado uma nova constraint da detailImageView 
+        // (height lessThanEqualTo safeArea height multipliedBy 0.7)
+        // e a constraint de height da detailImageView foi modificada para lessThanOrEqualTo.
+        // Essa ação foi feita porque, com as constraints apresentadas no storyboard, para telas pequenas,
+        // feito o iPod touch (7th generation), no modo Panorama, o nameLabel não aparecia
+        // Então foi-se colocado para limitar a escala da detailImage view se estiver ocupando muito.
     }
     
     func reloadName(_ name: String) {

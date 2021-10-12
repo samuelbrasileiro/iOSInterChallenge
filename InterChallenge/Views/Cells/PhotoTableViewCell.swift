@@ -8,6 +8,7 @@ class PhotoTableViewCell: ItemCell<Photo> {
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
