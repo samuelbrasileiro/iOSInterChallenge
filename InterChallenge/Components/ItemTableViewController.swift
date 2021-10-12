@@ -13,6 +13,7 @@ where CellType: ItemCell<ItemType>, ItemType: Codable {
     init(itemId: Int? = nil) {
         super.init(nibName: nil, bundle: nil)
         
+        self.viewModel.errorHandler = self
         self.viewModel.setURL(itemId: itemId)
     }
     
@@ -30,7 +31,7 @@ where CellType: ItemCell<ItemType>, ItemType: Codable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
     func selectionFunction(item: ItemType) { }
     
     func cellConfigurationCompletion(cell: CellType, at row: Int) { }

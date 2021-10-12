@@ -2,6 +2,7 @@ import UIKit
 
 class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHandler {
     
+    // MARK: - Attributes
     var viewModel = DetailsViewModel()
     weak var coodinator: MainCoordinator?
     
@@ -14,6 +15,7 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     
     let nameLabel = UILabel.withName("name")
     
+    // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
@@ -24,6 +26,8 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
         
         setConstraints()
     }
+    
+    // MARK: - Methods
     func configureView() {
         self.view.addSubview(detailImageView)
         self.view.addSubview(nameLabel)

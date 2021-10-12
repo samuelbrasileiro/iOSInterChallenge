@@ -52,7 +52,7 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showViewController<ItemType, CellType>(_ viewController: ItemsTableViewController<ItemType, CellType>,
+    func showViewController<ItemType, CellType>(_ viewController: ItemTableViewController<ItemType, CellType>,
                                                 name: String) {
         viewController.coordinator = self
         viewController.setTitle(name: name)

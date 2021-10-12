@@ -8,7 +8,7 @@
 import Alamofire
 import UIKit
 
-/// A class that handles API calls from URL
+/// A class that handles API calls from URLs
 protocol GenericAPIService {
     associatedtype ItemType: Codable
     
@@ -16,7 +16,7 @@ protocol GenericAPIService {
     func downloadImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void)
 }
 
-/// A class that handles API calls from URL
+/// A class that handles API calls from AlamoFire URLs
 class APIService<ItemType: Codable>: GenericAPIService {
     
     func fetchData(from url: String, completion: @escaping (Result<ItemType, Error>) -> Void) {

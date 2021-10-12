@@ -29,8 +29,7 @@ extension GenericTableViewController where Self: UITableViewController {
     func setItems() {
         viewModel.fillData {  [weak self] error in
             if let error = error {
-                print(error)
-                self?.handleError(error: error)
+                self?.handle(error: error)
             } else {
                 self?.update()
             }

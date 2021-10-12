@@ -3,12 +3,14 @@ import UIKit
 
 class ChallengeViewController: ItemTableViewController<User, UserTableViewCell> { 
     
+    // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Desafio"
     }
     
+    // MARK: - Methods
     override func cellConfigurationCompletion(cell: UserTableViewCell, at row: Int) {
         cell.delegate = self
         

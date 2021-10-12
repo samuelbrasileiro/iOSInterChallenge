@@ -1,10 +1,3 @@
-//
-//  DetailsViewModel.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
 import Alamofire
 import UIKit
 
@@ -12,17 +5,17 @@ protocol DetailsViewModelDelegate: AnyObject {
     
     func reloadName(_ name: String)
     func reloadImage(_ image: UIImage)
-    
-    func handleError(error: Error)
 }
 
 class DetailsViewModel {
     
+    // MARK: - Attributes
     weak var delegate: DetailsViewModelDelegate?
     weak var errorHandler: ErrorHandler?
     
     var apiService = APIService<Photo>()
     
+    // MARK: - Methods
     func configure(photo: Photo) {
 
         delegate?.reloadName(photo.title)
@@ -31,8 +24,7 @@ class DetailsViewModel {
             if case .success(let image) = result {
                 self?.delegate?.reloadImage(image) // ARC
             } else if case .failure(let error) = result {
-                print(error)
-                self?.delegate?.handleError(error: error)
+                self?.errorHandler?.handle(error: error)
             }
         }
     }

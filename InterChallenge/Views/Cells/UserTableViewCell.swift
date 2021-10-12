@@ -7,6 +7,7 @@ protocol UserTableViewCellDelegate: AnyObject {
 
 class UserTableViewCell: ItemCell<User> {    
     
+    // MARK: - Attributes
     var initialsLabel = UILabel.withName("initials")
     var nameLabel = UILabel.withName("name")
     var userNameLabel = UILabel.withName("username")
@@ -21,6 +22,7 @@ class UserTableViewCell: ItemCell<User> {
     
     weak var delegate: UserTableViewCellDelegate?
     
+    // MARK: - Mathods
     override func configure() {
         setInitialsView()
         setSeparator()

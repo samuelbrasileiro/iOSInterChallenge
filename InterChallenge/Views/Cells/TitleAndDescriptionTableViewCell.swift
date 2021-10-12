@@ -3,9 +3,11 @@ import UIKit
 class TitleAndDescriptionTableViewCell<ItemType>: ItemCell<ItemType>
 where ItemType: TitleAndDescription {
     
+    // MARK: - Attributes
     let titleLabel = UILabel.withName("title")
     let descriptionLabel = UILabel.withName("description")
     
+    // MARK: - Methods
     override func configure() {
         contentView
             .add(subview: titleLabel)

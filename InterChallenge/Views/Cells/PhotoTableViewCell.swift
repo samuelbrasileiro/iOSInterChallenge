@@ -3,8 +3,7 @@ import Alamofire
 
 class PhotoTableViewCell: ItemCell<Photo> {
     
-    var apiService = APIService<Photo>()
-    
+    // MARK: - Attributes
     let titleLabel = UILabel.withName("title")
     
     let photoImageView: UIImageView = {
@@ -13,6 +12,7 @@ class PhotoTableViewCell: ItemCell<Photo> {
         return imageView
     }()
     
+    // MARK: - Methods
     override func configure() {
         contentView
             .add(subview: titleLabel)
@@ -21,13 +21,6 @@ class PhotoTableViewCell: ItemCell<Photo> {
     
     override func setData(item: Photo) {
         self.titleLabel.text = item.title
-        
-        apiService.downloadImage(from: item.thumbnailUrl) { [weak self] result in
-        
-            if case .success(let image) = result {
-                self?.photoImageView.image = image
-            }
-        }
     }
     
     override func setConstraints() {
@@ -47,5 +40,9 @@ class PhotoTableViewCell: ItemCell<Photo> {
             equalTo: photoImageView.trailingAnchor, constant: 16).isActive = true
         titleLabel.topAnchor.constraint(
             equalTo: self.contentView.topAnchor, constant: 16).isActive = true
+    }
+    
+    override func prepareForReuse() {
+        self.photoImageView.image = nil
     }
 }

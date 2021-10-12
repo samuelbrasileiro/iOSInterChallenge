@@ -1,19 +1,11 @@
-//
-//  ChallengeViewModel.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
-import SwiftUI
+import UIKit
 import Alamofire
 
 /// A ViewModel for a TableView with generic codable type of items
 protocol GenericTableViewModel {
-    associatedtype ItemType
+    associatedtype ItemType: Codable
     
     var items: [ItemType] {get}
-    
     var cellIdentifier: String {get}
     
     /// This function access an API to get data
@@ -28,14 +20,18 @@ protocol GenericTableViewModel {
 
 class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     
+    // MARK: - Attributes
     private let apiService = APIService<[ItemType]>()
     
     var items: [ItemType] = []
     var cellIdentifier: String = "MainCell"
     
+    weak var errorHandler: ErrorHandler?
+    
     private var url: String = ""
     private var username: String = ""
     
+    // MARK: - Methods
     func fillData(completion: @escaping (Error?) -> Void) {
         
         apiService.fetchData(from: url) { [weak self] result in
@@ -93,5 +89,20 @@ class TableViewModel<ItemType: Codable>: GenericTableViewModel {
             return items[index]
         }
         return nil
+    }
+}
+
+extension TableViewModel where ItemType == Photo {
+    func downloadImage(for imageView: UIImageView, at row: Int) {
+        if let item = getItem(at: row) {
+            apiService.downloadImage(from: item.thumbnailUrl) {[weak self] result in
+                if case .success(let image) = result {
+                    imageView.image = image
+                } else if case .failure(let error) = result {
+
+                    self?.errorHandler?.handle(error: error)
+                }
+            }
+        }
     }
 }

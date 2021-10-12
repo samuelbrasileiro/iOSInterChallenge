@@ -2,8 +2,10 @@ import UIKit
 
 class AlbumTableViewCell: ItemCell<Album> {    
 
+    // MARK: - Attributes
     let albumNameLabel = UILabel.withName("album name")
     
+    // MARK: - Methods
     override func configure() {
         self.contentView.add(subview: albumNameLabel)
     }
