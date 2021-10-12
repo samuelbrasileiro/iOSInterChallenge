@@ -29,8 +29,9 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     
     // MARK: - Methods
     func configureView() {
-        self.view.addSubview(detailImageView)
-        self.view.addSubview(nameLabel)
+        self.view
+            .add(subview: detailImageView)
+            .add(subview: nameLabel)
     }
     
     func configure(photo: Photo) {
@@ -41,25 +42,17 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
     }
     
     func setConstraints() {
-        detailImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
-        detailImageView.leadingAnchor.constraint(
-            equalTo: self.view.safeAreaLayoutGuide.leadingAnchor,
-            constant: 24).isActive = true
-        detailImageView.topAnchor.constraint(
-            equalTo: self.view.safeAreaLayoutGuide.topAnchor,
-            constant: 16).isActive = true
-        detailImageView.trailingAnchor.constraint(
-            equalTo: self.view.trailingAnchor,
-            constant: -24).isActive = true
-        nameLabel.trailingAnchor.constraint(
-            equalTo: self.view.safeAreaLayoutGuide.trailingAnchor,
-            constant: -24).isActive = true
-        nameLabel.leadingAnchor.constraint(
-            equalTo: self.view.safeAreaLayoutGuide.leadingAnchor,
-            constant: 24).isActive = true
-        nameLabel.topAnchor.constraint(
-            equalTo: self.detailImageView.bottomAnchor,
-            constant: 16).isActive = true
+        let safeArea = view.safeAreaLayoutGuide
+        detailImageView
+            .make(.height, equalTo: nil, constant: 250)
+            .make(.leading, equalTo: safeArea, attribute: .leading, constant: 24)
+            .make(.trailing, equalTo: safeArea, attribute: .trailing, constant: -24)
+            .make(.top, equalTo: safeArea, attribute: .top, constant: 16)
+        
+        nameLabel
+            .make(.leading, equalTo: safeArea, attribute: .leading, constant: 24)
+            .make(.trailing, equalTo: safeArea, attribute: .trailing, constant: -24)
+            .make(.top, equalTo: detailImageView, attribute: .bottom, constant: 16)
     }
     
     func reloadName(_ name: String) {

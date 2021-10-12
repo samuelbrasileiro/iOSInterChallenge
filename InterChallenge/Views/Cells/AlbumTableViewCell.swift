@@ -11,14 +11,11 @@ class AlbumTableViewCell: ItemCell<Album> {
     }
     
     override func setConstraints() {
-        albumNameLabel.leadingAnchor.constraint(
-            equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
-        albumNameLabel.topAnchor.constraint(
-            equalTo: self.contentView.topAnchor, constant: 16).isActive = true
-        albumNameLabel.trailingAnchor.constraint(
-            equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
-        albumNameLabel.bottomAnchor.constraint(
-            equalTo: self.contentView.bottomAnchor, constant: -16).isActive = true
+        albumNameLabel
+            .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)
+            .make(.trailing, equalTo: contentView, attribute: .trailing, constant: -16)
+            .make(.top, equalTo: contentView, attribute: .top, constant: 16)
+            .make(.bottom, equalTo: contentView, attribute: .bottom, constant: -16)
     }
     
     override func setData(item: Album) {

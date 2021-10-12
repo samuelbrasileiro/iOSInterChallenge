@@ -20,21 +20,15 @@ where ItemType: TitleAndDescription {
     }
     
     override func setConstraints() {
-        titleLabel.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        titleLabel.trailingAnchor.constraint(
-            equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        titleLabel.topAnchor.constraint(
-            equalTo: contentView.topAnchor, constant: 16).isActive = true
-        descriptionLabel.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        descriptionLabel.trailingAnchor.constraint(
-            equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        descriptionLabel.topAnchor.constraint(
-            equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        descriptionLabel.bottomAnchor.constraint(
-            equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        titleLabel
+            .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)
+            .make(.trailing, equalTo: contentView, attribute: .trailing, constant: -16)
+            .make(.top, equalTo: contentView, attribute: .top, constant: 16)
         
+        descriptionLabel
+            .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)
+            .make(.trailing, equalTo: contentView, attribute: .trailing, constant: -16)
+            .make(.top, equalTo: titleLabel, attribute: .bottom, constant: 16)
+            .make(.bottom, equalTo: contentView, attribute: .bottom, constant: -8)
     }
-    
 }

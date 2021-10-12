@@ -24,22 +24,17 @@ class PhotoTableViewCell: ItemCell<Photo> {
     }
     
     override func setConstraints() {
-        photoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        photoImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150).isActive = true
+        photoImageView
+            .make(.width, equalTo: nil, constant: 150)
+            .make(.height, greaterThanOrEqualTo: nil, constant: 150)
+            .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)
+            .make(.top, equalTo: contentView, attribute: .top, constant: 8)
+            .make(.bottom, equalTo: contentView, attribute: .bottom, constant: -8)
         
-        photoImageView.leadingAnchor.constraint(
-            equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
-        photoImageView.topAnchor.constraint(
-            equalTo: self.contentView.topAnchor, constant: 8).isActive = true
-        photoImageView.bottomAnchor.constraint(
-            equalTo: self.contentView.bottomAnchor, constant: -8).isActive = true
-        
-        titleLabel.trailingAnchor.constraint(
-            equalTo: self.contentView.trailingAnchor, constant: -16).isActive = true
-        titleLabel.leadingAnchor.constraint(
-            equalTo: photoImageView.trailingAnchor, constant: 16).isActive = true
-        titleLabel.topAnchor.constraint(
-            equalTo: self.contentView.topAnchor, constant: 16).isActive = true
+        titleLabel
+            .make(.leading, equalTo: photoImageView, attribute: .trailing, constant: 16)
+            .make(.trailing, equalTo: contentView, attribute: .trailing, constant: -16)
+            .make(.top, equalTo: contentView, attribute: .top, constant: 16)
     }
     
     override func prepareForReuse() {
