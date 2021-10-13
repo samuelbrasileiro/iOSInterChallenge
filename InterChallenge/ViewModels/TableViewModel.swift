@@ -34,7 +34,7 @@ class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     // MARK: - Methods
     func fillData(completion: @escaping (Error?) -> Void) {
         
-        apiService.fetchData(from: url) { [weak self] result in
+        apiService.fetchData { [weak self] result in
             if case .success(let items) = result {
                 self?.items = items
                 
@@ -47,25 +47,7 @@ class TableViewModel<ItemType: Codable>: GenericTableViewModel {
     }
     
     func setURL(itemId: Int? = nil) {
-        var idText = ""
-        if let itemId = itemId {
-            idText = String(itemId)
-        }
-        
-        switch ItemType.self {
-        case is User.Type:
-            url = "https://jsonplaceholder.typicode.com/users"
-        case is Post.Type:
-            url = "https://jsonplaceholder.typicode.com/posts?userId=\(idText)"
-        case is Comment.Type:
-            url = "https://jsonplaceholder.typicode.com/comments?postId=\(idText)"
-        case is Album.Type:
-            url = "https://jsonplaceholder.typicode.com/albums?userId=\(idText)"
-        case is Photo.Type:
-            url = "https://jsonplaceholder.typicode.com/photos?albumId=\(idText)"
-        default:
-            url = ""
-        }
+        apiService.setURL(itemId: itemId)
     }
     
     func setUsername(name: String) {
