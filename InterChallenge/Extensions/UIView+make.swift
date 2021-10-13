@@ -1,10 +1,3 @@
-//
-//  UIView+Make.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 12/10/21.
-//
-
 import UIKit
 
 public extension UIView {

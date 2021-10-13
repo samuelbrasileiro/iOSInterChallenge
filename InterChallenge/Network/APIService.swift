@@ -1,10 +1,3 @@
-//
-//  APIService.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 10/10/21.
-//
-
 import Alamofire
 import UIKit
 

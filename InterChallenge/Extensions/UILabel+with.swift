@@ -1,10 +1,3 @@
-//
-//  Label+withName.swift
-//  InterChallenge
-//
-//  Created by Samuel Brasileiro on 08/10/21.
-//
-
 import UIKit
 
 extension UILabel {
