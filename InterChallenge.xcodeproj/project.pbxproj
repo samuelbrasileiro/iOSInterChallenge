@@ -12,7 +12,7 @@
 		7E269D362715590F00FFD19C /* UIView+make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E269D352715590F00FFD19C /* UIView+make.swift */; };
 		7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */; };
 		7E80E8852713D1D7002218AA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80E8842713D1D7002218AA /* APIService.swift */; };
-		7EAC21B527106D1B00CBDE2A /* UILabel+withName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */; };
+		7EAC21B527106D1B00CBDE2A /* UILabel+with.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC21B427106D1B00CBDE2A /* UILabel+with.swift */; };
 		7EC011E627149D0E00623449 /* CellConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */; };
 		7EC84C322710C9A30057EB7B /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C312710C9A30057EB7B /* TableViewModel.swift */; };
 		7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */; };
@@ -132,7 +132,7 @@
 		7E269D352715590F00FFD19C /* UIView+make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+make.swift"; sourceTree = "<group>"; };
 		7E806B1C2711CBEA00AAADE8 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		7E80E8842713D1D7002218AA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+withName.swift"; sourceTree = "<group>"; };
+		7EAC21B427106D1B00CBDE2A /* UILabel+with.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+with.swift"; sourceTree = "<group>"; };
 		7EC011E527149D0E00623449 /* CellConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurationDelegate.swift; sourceTree = "<group>"; };
 		7EC84C312710C9A30057EB7B /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		7EC84C382710CA1D0057EB7B /* GenericTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 			children = (
 				7E04F0352715517200BDB721 /* UIView+add.swift */,
 				7E269D352715590F00FFD19C /* UIView+make.swift */,
-				7EAC21B427106D1B00CBDE2A /* UILabel+withName.swift */,
+				7EAC21B427106D1B00CBDE2A /* UILabel+with.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 				7EC84C392710CA1D0057EB7B /* GenericTableViewController.swift in Sources */,
 				7E80E8852713D1D7002218AA /* APIService.swift in Sources */,
 				BA0CF8DA26335759007BDFC8 /* Post.swift in Sources */,
-				7EAC21B527106D1B00CBDE2A /* UILabel+withName.swift in Sources */,
+				7EAC21B527106D1B00CBDE2A /* UILabel+with.swift in Sources */,
 				7E806B1D2711CBEA00AAADE8 /* ConfigurableCell.swift in Sources */,
 				BA0CF8D226334FDB007BDFC8 /* PostTableViewController.swift in Sources */,
 				BA0CF8CD26334BC3007BDFC8 /* TitleAndDescriptionTableViewCell.swift in Sources */,

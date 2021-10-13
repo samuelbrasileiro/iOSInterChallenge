@@ -8,11 +8,11 @@ protocol UserTableViewCellDelegate: AnyObject {
 class UserTableViewCell: ItemCell<User> {    
     
     // MARK: - Attributes
-    let initialsLabel = UILabel.withName("initials")
-    let nameLabel = UILabel.withName("name")
-    let userNameLabel = UILabel.withName("username")
-    let emailLabel = UILabel.withName("email")
-    let phoneLabel = UILabel.withName("phone")
+    let initialsLabel = UILabel.with(text: "initials")
+    let nameLabel = UILabel.with(text: "name", alignment: .center)
+    let userNameLabel = UILabel.with(text: "username")
+    let emailLabel = UILabel.with(text: "email")
+    let phoneLabel = UILabel.with(text: "phone")
     
     let initialsView = UIView()
     let separatorView = UIView()
@@ -56,13 +56,19 @@ class UserTableViewCell: ItemCell<User> {
     
     func setButtons() {
         let albumsButton = UIButton()
-        albumsButton.setTitleColor(.systemYellow, for: .normal)
+        albumsButton.setTitleColor(.systemOrange, for: .normal)
         albumsButton.setTitle("ÁLBUNS", for: .normal)
+        if let font = albumsButton.titleLabel?.font {
+            albumsButton.titleLabel?.font = font.withSize(16)
+        }
         albumsButton.addTarget(self, action: #selector(albumsAction), for: .touchUpInside)
         
         let postsButton = UIButton()
-        postsButton.setTitleColor(.systemYellow, for: .normal)
+        postsButton.setTitleColor(.systemOrange, for: .normal)
         postsButton.setTitle("POSTAGENS", for: .normal)
+        if let font = albumsButton.titleLabel?.font {
+            postsButton.titleLabel?.font = font.withSize(16)
+        }
         postsButton.addTarget(self, action: #selector(postsAction), for: .touchUpInside)
         
         stackView = UIStackView(arrangedSubviews: [albumsButton, postsButton])
@@ -109,7 +115,7 @@ class UserTableViewCell: ItemCell<User> {
             .make(.top, equalTo: emailLabel, attribute: .bottom, constant: 24)
         
         stackView
-            .make(.top, equalTo: separatorView, attribute: .bottom, constant: 64)
+            .make(.top, equalTo: separatorView, attribute: .bottom, constant: 24)
             .make(.top, equalTo: phoneLabel, attribute: .bottom, constant: 64)
             .make(.bottom, equalTo: contentView, attribute: .bottom, constant: -8)
             .make(.leading, equalTo: contentView, attribute: .leading, constant: 16)

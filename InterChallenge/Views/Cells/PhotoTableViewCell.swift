@@ -4,7 +4,7 @@ import Alamofire
 class PhotoTableViewCell: ItemCell<Photo> {
     
     // MARK: - Attributes
-    let titleLabel = UILabel.withName("title")
+    let titleLabel = UILabel.with(text: "title")
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()

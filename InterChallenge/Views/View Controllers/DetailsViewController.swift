@@ -3,6 +3,7 @@ import UIKit
 class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHandler {
     
     // MARK: - Attributes
+    
     var viewModel = DetailsViewModel()
     weak var coodinator: MainCoordinator?
     
@@ -13,7 +14,7 @@ class DetailsViewController: UIViewController, DetailsViewModelDelegate, ErrorHa
         return imageView
     }()
     
-    let nameLabel = UILabel.withName("name")
+    let nameLabel = UILabel.with(text: "name")
     
     // MARK: - Initializers
     override func viewDidLoad() {

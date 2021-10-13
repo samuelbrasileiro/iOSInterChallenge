@@ -4,8 +4,8 @@ class TitleAndDescriptionTableViewCell<ItemType>: ItemCell<ItemType>
 where ItemType: TitleAndDescription {
     
     // MARK: - Attributes
-    let titleLabel = UILabel.withName("title")
-    let descriptionLabel = UILabel.withName("description")
+    let titleLabel = UILabel.with(text: "title", fontSize: 21)
+    let descriptionLabel = UILabel.with(text: "description")
     
     // MARK: - Methods
     override func configure() {

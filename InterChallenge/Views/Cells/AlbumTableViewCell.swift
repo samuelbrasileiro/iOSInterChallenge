@@ -3,7 +3,7 @@ import UIKit
 class AlbumTableViewCell: ItemCell<Album> {    
 
     // MARK: - Attributes
-    let albumNameLabel = UILabel.withName("album name")
+    let albumNameLabel = UILabel.with(text: "album name")
     
     // MARK: - Methods
     override func configure() {
