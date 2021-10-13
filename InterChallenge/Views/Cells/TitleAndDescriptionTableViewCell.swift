@@ -4,7 +4,7 @@ class TitleAndDescriptionTableViewCell<ItemType>: ItemCell<ItemType>
 where ItemType: TitleAndDescription {
     
     // MARK: - Attributes
-    let titleLabel = UILabel.with(text: "title", fontSize: 21)
+    let titleLabel = UILabel.with(text: "title", numberOfLines: 2, fontSize: 21)
     let descriptionLabel = UILabel.with(text: "description")
     
     // MARK: - Methods

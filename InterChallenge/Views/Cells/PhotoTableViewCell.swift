@@ -4,7 +4,7 @@ import Alamofire
 class PhotoTableViewCell: ItemCell<Photo> {
     
     // MARK: - Attributes
-    let titleLabel = UILabel.with(text: "title")
+    let titleLabel = UILabel.with(text: "title", numberOfLines: 5)
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -35,7 +35,7 @@ class PhotoTableViewCell: ItemCell<Photo> {
         titleLabel
             .make(.leading, equalTo: photoImageView, attribute: .trailing, constant: 16)
             .make(.trailing, equalTo: contentView, attribute: .trailing, constant: -16)
-            .make(.top, equalTo: contentView, attribute: .top, constant: 16)
+            .make(.top, equalTo: contentView, attribute: .top, constant: 60)
     }
     
     override func prepareForReuse() {
